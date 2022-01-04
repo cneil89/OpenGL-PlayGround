@@ -47,18 +47,14 @@ void Shader::SetUniformMat4f(const std::string& name, const glm::mat4& matrix)
     GLCall(glUniformMatrix4fv(GetUniformLocation(name), 1, GL_FALSE, &matrix[0][0]));
 }
 
-int32_t Shader::GetUniformLocation(const std::string& name)
+int32_t Shader::GetUniformLocation(const std::string& name) const
 {
     if (m_UniformLocationCache.find(name) != m_UniformLocationCache.end())
-    {
         return m_UniformLocationCache[name];
-    }
 
     GLCall(int32_t location = glGetUniformLocation(m_RendererID, name.c_str()));
     if (location == -1)
-    {
         std::cout << "Warning: uniform '" << name << "' doesn't exist!" << std::endl;
-    }
 
     m_UniformLocationCache[name] = location;
     return location;
@@ -81,13 +77,9 @@ ShaderProgramSource Shader::ParseShader(const std::string& filepath)
         if (line.find("#shader") != std::string::npos)
         {
             if (line.find("vertex") != std::string::npos)
-            {
                 type = ShaderType::VERTEX;
-            }
             else if (line.find("fragment") != std::string::npos)
-            {
                 type = ShaderType::FRAGMENT;
-            }
         }
         else 
         {
