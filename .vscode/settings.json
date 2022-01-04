@@ -56,6 +56,14 @@
         "xtr1common": "cpp",
         "xutility": "cpp",
         "list": "cpp",
-        "xhash": "cpp"
+        "xhash": "cpp",
+        "ctime": "cpp",
+        "functional": "cpp",
+        "iomanip": "cpp",
+        "locale": "cpp",
+        "xlocbuf": "cpp",
+        "xlocmes": "cpp",
+        "xlocmon": "cpp",
+        "xloctime": "cpp"
     }
 }

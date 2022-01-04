@@ -1,20 +1,21 @@
 #include "defines.h"
 #include "Renderer.h"
 
-#include "VertexBuffer.h"
-#include "IndexBuffer.h"
-#include "VertexArray.h"
-#include "VertexBufferLayout.h"
-#include "Shader.h"
-#include "Texture.h"
+// #include "VertexBuffer.h"
+// #include "IndexBuffer.h"
+// #include "VertexArray.h"
+// #include "VertexBufferLayout.h"
+// #include "Shader.h"
+// #include "Texture.h"
 
-#include "glm/glm.hpp"
-#include "glm/gtc/matrix_transform.hpp"
+// #include "glm/glm.hpp"
+// #include "glm/gtc/matrix_transform.hpp"
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw_gl3.h"
 
 #include "tests/Test.h"
 #include "tests/TestClearColor.h"
+#include "tests/TestTexture2D.h"
 
 int main()
 {
@@ -89,6 +90,7 @@ int main()
         currentTest = testMenu;
 
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");
+        testMenu->RegisterTest<test::TestTexture2D>("2D Texture");
 
         while (!glfwWindowShouldClose(window))
         {
@@ -107,6 +109,8 @@ int main()
                     currentTest = testMenu;
                 }
                 currentTest->OnImGuiRender();
+                ImGui::Separator();
+                ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
                 ImGui::End();
             }
 
