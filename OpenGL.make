@@ -96,7 +96,9 @@ OBJECTS += $(OBJDIR)/main.o
 OBJECTS += $(OBJDIR)/stb_image.o
 
 ifeq ($(config),debug)
+GENERATED += $(OBJDIR)/Test.o
 GENERATED += $(OBJDIR)/TestClearColor.o
+OBJECTS += $(OBJDIR)/Test.o
 OBJECTS += $(OBJDIR)/TestClearColor.o
 
 endif
@@ -201,6 +203,9 @@ $(OBJDIR)/imgui_impl_glfw_gl3.o: vendor/imgui/include/imgui/imgui_impl_glfw_gl3.
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 
 ifeq ($(config),debug)
+$(OBJDIR)/Test.o: src/tests/Test.cpp
+	@echo $(notdir $<)
+	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
 $(OBJDIR)/TestClearColor.o: src/tests/TestClearColor.cpp
 	@echo $(notdir $<)
 	$(SILENT) $(CXX) $(ALL_CXXFLAGS) $(FORCE_INCLUDE) -o "$@" -MF "$(@:%.o=%.d)" -c "$<"
