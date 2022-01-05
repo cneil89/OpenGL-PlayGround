@@ -1,21 +1,13 @@
 #include "defines.h"
 #include "Renderer.h"
 
-// #include "VertexBuffer.h"
-// #include "IndexBuffer.h"
-// #include "VertexArray.h"
-// #include "VertexBufferLayout.h"
-// #include "Shader.h"
-// #include "Texture.h"
-
-// #include "glm/glm.hpp"
-// #include "glm/gtc/matrix_transform.hpp"
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw_gl3.h"
 
 #include "tests/Test.h"
 #include "tests/TestClearColor.h"
 #include "tests/TestTexture2D.h"
+#include "tests/TestTriangle2D.h"
 
 int main()
 {
@@ -91,6 +83,7 @@ int main()
 
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");
         testMenu->RegisterTest<test::TestTexture2D>("2D Texture");
+        testMenu->RegisterTest<test::TestTriangle2D>("2D Triangle");
 
         while (!glfwWindowShouldClose(window))
         {
