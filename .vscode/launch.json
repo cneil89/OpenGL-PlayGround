@@ -5,14 +5,15 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "cl.exe build and debug",
-            "type": "cppvsdbg",
+            "name": "clang debug",
+            "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}\\build\\bin\\Debug-windows-x86_64\\OpenGL\\OpenGL-Tutorial.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
+            "MIMode": "gdb",
             "console": "externalTerminal",
             "setupCommands": [
                 {

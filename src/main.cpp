@@ -16,7 +16,6 @@ const unsigned int SCR_WIDTH = 1600;
 const unsigned int SCR_HEIGHT = 1200;
 const char* APP_NAME = "OpenGL Tutorial";
 
-
 int main()
 {
 
@@ -48,7 +47,7 @@ int main()
 
     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
-    std::cout << "\nOpenGL Version: " << glGetString(GL_VERSION) << std::endl;
+    std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 
     glfwSwapInterval(1);
 
@@ -68,7 +67,8 @@ int main()
 
         test::Test* currentTest = nullptr;
         test::TestMenu* testMenu = new test::TestMenu(currentTest);
-        currentTest = testMenu;
+        // currentTest = testMenu
+        currentTest = new test::TestTriangle2D;
 
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");
         testMenu->RegisterTest<test::TestTexture2D>("2D Texture");

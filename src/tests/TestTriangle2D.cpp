@@ -15,9 +15,9 @@ namespace test {
     {
         float positions[] = {
             //   Positions            // Colors
-            -100.0f, -100.0f, 0.0f,   1.0f, 0.0f, 0.0f,
-             100.0f, -100.0f, 0.0f,   0.0f, 1.0f, 0.0f,
-               0.0f,  100.0f, 0.0f,   0.0f, 0.0f, 0.0f 
+            -200.0f, -200.0f, 0.0f,   1.0f, 0.0f, 0.0f,
+             200.0f, -200.0f, 0.0f,   0.0f, 1.0f, 0.0f,
+               0.0f,  200.0f, 0.0f,   0.0f, 0.0f, 1.0f 
         };
 
         uint32_t indicies[] = {
@@ -29,7 +29,7 @@ namespace test {
 
         m_VAO = std::make_unique<VertexArray>();
 
-        m_VertexBuffer = std::make_unique<VertexBuffer>(positions, 3 * sizeof(float));
+        m_VertexBuffer = std::make_unique<VertexBuffer>(positions, 3 * 2 * sizeof(float));
         VertexBufferLayout layout;
         layout.Push<float>(3);
         layout.Push<float>(3);
@@ -70,6 +70,6 @@ namespace test {
 
     void TestTriangle2D::OnImGuiRender() 
     {
-        ImGui::SliderFloat3("Translation A", &m_Translation.x, 0.0f, 940.0f); 
+        ImGui::SliderFloat3("Translation", &m_Translation.x, 0.0f, 940.0f); 
     }
 }

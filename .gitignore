@@ -1,3 +1,6 @@
 build/*
 OpenGL.make
-imgui.ini
+*.ini
+GraphicsProg.sln
+OpenGL.vcxproj*
+.vs

@@ -17,11 +17,11 @@ void main()
 #shader fragment
 #version 450 core
 
-layout (location = 0) out vec3 aColor;
+in vec3 ourColor;
 
 out vec4 FragColor;
 
 void main()  
 {
-    FragColor = vec4(aColor, 1.0f);
+    FragColor = vec4(ourColor, 1.0f);
 };

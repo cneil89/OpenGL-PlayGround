@@ -1,5 +1,5 @@
 workspace "GraphicsProg"
-    architecture "x86_64"
+    architecture "x64"
     configurations { "Debug", "Release" }
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
@@ -50,6 +50,7 @@ project "OpenGL"
 
     filter { "configurations:Debug" }
         symbols "On"
+        symbolspath ("build/bin/" .. outputdir .. "/%{prj.name}.pdb")
 
     filter { "configurations:Release" }
         defines { "NDEBUG" }
