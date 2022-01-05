@@ -9,11 +9,16 @@
 #include "tests/TestTexture2D.h"
 #include "tests/TestTriangle2D.h"
 
+void framebuffer_size_callback(GLFWwindow* window, int width, int height);
+void processInput(GLFWwindow* window);
+
+const unsigned int SCR_WIDTH = 1600;
+const unsigned int SCR_HEIGHT = 1200;
+const char* APP_NAME = "OpenGL Tutorial";
+
+
 int main()
 {
-    const char* appName = "OpenGL Tutorial";
-    bool fullscreen = false;
-    bool prompt = false;
 
     GLFWwindow* window;
     if (!glfwInit())
@@ -34,24 +39,7 @@ int main()
 
     std::cout << "Screen Size: " << mode->width << "x"<< mode->height << std::endl;
 
-    uint8_t choice = 'n';
-    if (prompt)
-    {
-        do
-        {
-            std::cout << "Would you like to try full screen? (y/n): ";
-            std::cin >> choice;   
-        } while (choice != 'y' && choice != 'n');
-    }
-    
-    if (choice == 'n')
-    {
-        screenWidth = 960;
-        screenHeight = 540;
-        monitor = NULL;
-    }
-
-    window = glfwCreateWindow(screenWidth, screenHeight, appName, monitor, NULL);
+    window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, APP_NAME, NULL, NULL);
     if (!window)
     {
         glfwTerminate();
@@ -59,6 +47,7 @@ int main()
     }
 
     glfwMakeContextCurrent(window);
+    glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     std::cout << "\nOpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 
     glfwSwapInterval(1);
@@ -89,6 +78,7 @@ int main()
         {
             GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
             renderer.Clear();
+            processInput(window);
 
             ImGui_ImplGlfwGL3_NewFrame();
             if (currentTest)
@@ -126,4 +116,21 @@ int main()
 
     glfwTerminate();
     return 0;
+}
+
+void processInput(GLFWwindow* window)
+{
+    // If escape is press window will close.
+    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+        glfwSetWindowShouldClose(window, true);
+}
+
+
+void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+{
+    // Make sure the viewport matches the new window dimensions; note that width and 
+    // height will be significantly larger than specified on retina displays.
+
+    std::cout << "Resizing: "<< width << "x" << height << std::endl;
+    glViewport(0, 0, width, height);
 }
