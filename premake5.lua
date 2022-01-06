@@ -37,7 +37,7 @@ project "OpenGL"
     links { 
         "user32", 
         "opengl32", 
-        "gdi32", 
+        "Gdi32", 
         "shell32", 
         "glfw3_mt", 
         "glew32s"
@@ -50,7 +50,7 @@ project "OpenGL"
 
     filter { "configurations:Debug" }
         symbols "On"
-        symbolspath ("build/bin/" .. outputdir .. "/%{prj.name}.pdb")
+        linkoptions { "-g" }
 
     filter { "configurations:Release" }
         defines { "NDEBUG" }

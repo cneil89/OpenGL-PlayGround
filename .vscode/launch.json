@@ -6,7 +6,7 @@
     "configurations": [
         {
             "name": "clang debug",
-            "type": "cppdbg",
+            "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}\\build\\bin\\Debug-windows-x86_64\\OpenGL\\OpenGL-Tutorial.exe",
             "args": [],

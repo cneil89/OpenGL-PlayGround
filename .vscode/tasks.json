@@ -67,24 +67,32 @@
 		{
 			"type": "cppbuild",
 			"label": "DO NOT USE OUT OF DATE - CLANG Build",
-			"command": "C:/Program Files/LLVM/bin/clang.exe",
+			"command": "clang",
 			"args": [
 				"-fdiagnostics-color=always",
 				"-g",
+				"-c",
 				"-Wall",
 				"-std=c++17",
 				"${workspaceFolder}\\src\\*.cpp",
+				"${workspaceFolder}\\src\\tests\\*.cpp",
+				"${workspaceFolder}\\vendor\\imgui\\include\\imgui\\*.cpp",
 				"-o",
 				"${workspaceFolder}\\build\\Application.exe",
-				"-I${workspaceFolder\\src",
+				"-I${workspaceFolder}\\src\\tests",
+				"-I${workspaceFolder}\\src",
 				"-I${workspaceFolder}\\vendor\\GLFW\\include",
-				"-I${workwpaceFolder}\\vendor\\GLEW\\include",
+				"-I${workspaceFolder}\\vendor\\GLEW\\include",
+				"-I${workspaceFolder}\\vendor\\stb_image\\include",
+				"-I${workspaceFolder}\\vendor\\glm\\include",
+				"-I${workspaceFolder}\\vendor\\imgui\\include",
 				"-L${workspaceFolder}\\lib",
 				"-luser32",
 				"-lgdi32",
 				"-lshell32",
 				"-lopengl32",
 				"-lglfw3_mt",
+				"-lglew32s"
 			],
 			"options": {
 				"cwd": "C:/Program Files/LLVM/bin"
@@ -93,7 +101,7 @@
 				"$gcc"
 			],
 			"group": "build",
-			"detail": "compiler: \"C:/Program Files/mingw-w64/x86_64-8.1.0-win32-seh-rt_v6-rev0/mingw64/bin/g++.exe\""
+			"detail": "compiler: clang (no MAKEFILE)"
 		},
 	]
 }

@@ -36,7 +36,7 @@ int main()
     uint32_t screenWidth = mode->width;
     uint32_t screenHeight = mode->height;
 
-    std::cout << "Screen Size: " << mode->width << "x"<< mode->height << std::endl;
+    std::cout << "Screen Size: " << screenWidth << "x"<< screenHeight << std::endl;
 
     window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, APP_NAME, NULL, NULL);
     if (!window)
@@ -45,7 +45,7 @@ int main()
         return -1;
     }
 
-    glfwMakeContextCurrent(window);
+     glfwMakeContextCurrent(window);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
     std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
 
