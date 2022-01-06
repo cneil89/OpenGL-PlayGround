@@ -1,6 +1,6 @@
 build/*
 OpenGL.make
 *.ini
-GraphicsProg.sln
+OpenGL.sln
 OpenGL.vcxproj*
 .vs

@@ -1,4 +1,4 @@
-workspace "GraphicsProg"
+workspace "OpenGL"
     architecture "x64"
     configurations { "Debug", "Release" }
 
