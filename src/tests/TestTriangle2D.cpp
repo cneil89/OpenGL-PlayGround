@@ -11,16 +11,16 @@ namespace test {
     TestTriangle2D::TestTriangle2D()
         : m_Proj(glm::ortho(0.0f, 1600.0f, 0.0f, 1200.0f, -1.0f, 1.0f)),
             m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))),
-            m_Translation(470, 280, 0)
+            m_Translation(750, 600, 0)
     {
         GLCall(glEnable(GL_BLEND));
         GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
         float positions[] = {
             //   Positions            // Colors
-            -150.0f, -150.0f, 0.0f,   1.0f, 0.0f, 0.0f,    // Bottom Left
-             150.0f, -150.0f, 0.0f,   0.0f, 1.0f, 0.0f,    // Borrom Right
-               0.0f,  150.0f, 0.0f,   0.0f, 0.0f, 1.0f     // Top Middle
+            -300.0f, -300.0f, 0.0f,   1.0f, 0.0f, 0.0f,    // Bottom Left
+             300.0f, -300.0f, 0.0f,   0.0f, 1.0f, 0.0f,    // Borrom Right 
+               0.0f,  300.0f, 0.0f,   0.0f, 0.0f, 1.0f     // Top Middle
         };
 
         uint32_t indicies[] = {
