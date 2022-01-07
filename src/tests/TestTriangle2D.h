@@ -1,12 +1,9 @@
 #pragma once
-
+#include "defines.h"
 #include "Test.h"
 
 #include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
-
-#include <memory>
-
 
 namespace test {
 
