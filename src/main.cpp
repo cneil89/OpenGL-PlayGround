@@ -8,12 +8,11 @@
 #include "tests/TestClearColor.h"
 #include "tests/TestTexture2D.h"
 #include "tests/TestTriangle2D.h"
+#include "tests/TestCube3D.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
-const unsigned int SCR_WIDTH = 1600;
-const unsigned int SCR_HEIGHT = 1200;
 const char* APP_NAME = "OpenGL Tutorial";
 
 int main()
@@ -68,11 +67,12 @@ int main()
         test::Test* currentTest = nullptr;
         test::TestMenu* testMenu = new test::TestMenu(currentTest);
         // currentTest = testMenu
-        currentTest = new test::TestTriangle2D;
+        currentTest = new test::TestCube3D;
 
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");
         testMenu->RegisterTest<test::TestTexture2D>("2D Texture");
         testMenu->RegisterTest<test::TestTriangle2D>("2D Triangle");
+        testMenu->RegisterTest<test::TestCube3D>("3D Cube");
 
         while (!glfwWindowShouldClose(window))
         {
@@ -131,6 +131,5 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     // Make sure the viewport matches the new window dimensions; note that width and 
     // height will be significantly larger than specified on retina displays.
 
-    std::cout << "Resizing: "<< width << "x" << height << std::endl;
     glViewport(0, 0, width, height);
 }

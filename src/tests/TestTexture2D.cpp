@@ -9,7 +9,7 @@
 namespace test {
 
     TestTexture2D::TestTexture2D()
-        : m_Proj(glm::ortho(0.0f, 1600.0f, 0.0f, 1200.0f, -1.0f, 1.0f)),
+        : m_Proj(glm::ortho(0.0f, (float)SCR_WIDTH, 0.0f, (float)SCR_HEIGHT, -1.0f, 1.0f)),
             m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))),
             m_TranslationA(200, 200, 0), m_TranslationB(400, 200, 0)
     {
@@ -88,7 +88,7 @@ namespace test {
 
     void TestTexture2D::OnImGuiRender()
     {
-        ImGui::SliderFloat3("Translation A", &m_TranslationA.x, 0.0f, 1600.0f);  
-        ImGui::SliderFloat3("Translation B", &m_TranslationB.x, 0.0f, 1600.0f);   
+        ImGui::SliderFloat3("Translation A", &m_TranslationA.x, 0.0f, (float)SCR_WIDTH);  
+        ImGui::SliderFloat3("Translation B", &m_TranslationB.x, 0.0f, (float)SCR_WIDTH);   
     }
 }

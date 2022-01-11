@@ -9,18 +9,18 @@
 namespace test {
 
     TestTriangle2D::TestTriangle2D()
-        : m_Proj(glm::ortho(0.0f, 1600.0f, 0.0f, 1200.0f, -1.0f, 1.0f)),
+        : m_Proj(glm::ortho(0.0f, (float)SCR_WIDTH, 0.0f, (float)SCR_HEIGHT, -1.0f, 1.0f)),
             m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))),
-            m_Translation(750, 600, 0)
+            m_Translation(450, 340, 0)
     {
         GLCall(glEnable(GL_BLEND));
         GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
         float positions[] = {
             //   Positions            // Colors
-            -300.0f, -300.0f, 0.0f,   1.0f, 0.0f, 0.0f,    // Bottom Left
-             300.0f, -300.0f, 0.0f,   0.0f, 1.0f, 0.0f,    // Borrom Right 
-               0.0f,  300.0f, 0.0f,   0.0f, 0.0f, 1.0f     // Top Middle
+            -150.0f, -150.0f, 0.0f,   1.0f, 0.0f, 0.0f,    // Bottom Left
+             150.0f, -150.0f, 0.0f,   0.0f, 1.0f, 0.0f,    // Borrom Right 
+               0.0f,  150.0f, 0.0f,   0.0f, 0.0f, 1.0f     // Top Middle
         };
 
         uint32_t indicies[] = {
@@ -71,6 +71,6 @@ namespace test {
 
     void TestTriangle2D::OnImGuiRender() 
     {
-        ImGui::SliderFloat3("Translation", &m_Translation.x, 0.0f, 1600.0f); 
+        ImGui::SliderFloat3("Translation", &m_Translation.x, 0.0f, (float)SCR_WIDTH); 
     }
 }
