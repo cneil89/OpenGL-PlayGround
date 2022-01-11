@@ -58,29 +58,13 @@ namespace test {
             -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
         };
 
-        
+        m_VAO = std::make_unique<VertexArray>();
+        m_VertexBuffer = std::make_unique<VertexBuffer>(vertices, 36 * 5 * sizeof(float));
+        VertexBufferLayout layout;
+        layout.Push<float>(3);
+        layout.Push<float>(2);
 
-        unsigned int VBO, VAO;
-        glGenVertexArrays(1, &VAO);
-        glGenBuffers(1, &VBO);
-
-        glBindVertexArray(VAO);
-
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-
-        // m_VAO = std::make_unique<VertexArray>();
-        // m_VertexBuffer = std::make_unique<VertexBuffer>(vertices, 36 * 5 * sizeof(float));
-
-
-
-        // position attribute
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
-        glEnableVertexAttribArray(0);
-        // texture coord attribute
-        glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
-        glEnableVertexAttribArray(1);
+        m_VAO->AddBuffer(*m_VertexBuffer, layout);
 
         m_Shader = std::make_unique<Shader>("res/shaders/OGLBookShader.shader");
         m_Texture1 = std::make_unique<Texture>("res/textures/container.jpg", false);
@@ -90,10 +74,6 @@ namespace test {
         m_Shader->Bind();
         m_Shader->SetUniform1i("texture1", 0);
         m_Shader->SetUniform1i("texture2", 1);
-
-
-
-
 
     }
 
@@ -112,7 +92,6 @@ namespace test {
         GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
         GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
-
         glm::vec3 m_CubePositions[] = {
             glm::vec3( 0.0f,  0.0f,  0.0f),
             glm::vec3( 2.0f,  5.0f, -15.0f),
@@ -126,7 +105,6 @@ namespace test {
             glm::vec3(-1.3f,  1.0f, -1.5f),
             glm::vec3( 0.5f, -4.3f, -9.0f)
         };
-
 
         m_Texture1->Bind(0);
         m_Texture2->Bind(1);
@@ -143,7 +121,7 @@ namespace test {
         m_Shader->SetUniformMat4f("projection", projection);
 
 
-        // m_VAO->Bind();
+        m_VAO->Bind();
         for (uint32_t i = 0; i < 11; ++i)
         {
             glm::mat4 model = glm::mat4(1.0f);
@@ -157,7 +135,6 @@ namespace test {
 
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
-
     }
 
     void TestCube3D::OnImGuiRender()
