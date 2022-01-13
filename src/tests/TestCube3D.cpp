@@ -1,6 +1,7 @@
 #include "TestCube3D.h"
 
 #include "Renderer.h"
+#include "Camera.h"
 
 #include "imgui/imgui.h"
 #include "glm/glm.hpp"
@@ -10,7 +11,7 @@
 namespace test {
 
 
-    TestCube3D::TestCube3D() 
+    TestCube3D::TestCube3D()
     {
         glEnable(GL_DEPTH_TEST);
 
