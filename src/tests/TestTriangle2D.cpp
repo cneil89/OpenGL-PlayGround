@@ -71,6 +71,6 @@ namespace test {
 
     void TestTriangle2D::OnImGuiRender() 
     {
-        ImGui::SliderFloat3("Translation", &m_Translation.x, 0.0f, (float)SCR_WIDTH); 
+        ImGui::SliderFloat2("Translation", &m_Translation.x, 0.0f, (float)SCR_WIDTH); 
     }
 }

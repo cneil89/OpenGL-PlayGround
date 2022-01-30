@@ -88,7 +88,7 @@ namespace test {
 
     void TestTexture2D::OnImGuiRender()
     {
-        ImGui::SliderFloat3("Translation A", &m_TranslationA.x, 0.0f, (float)SCR_WIDTH);  
-        ImGui::SliderFloat3("Translation B", &m_TranslationB.x, 0.0f, (float)SCR_WIDTH);   
+        ImGui::SliderFloat2("Translation A", &m_TranslationA.x, 0.0f, (float)SCR_WIDTH);  
+        ImGui::SliderFloat2("Translation B", &m_TranslationB.x, 0.0f, (float)SCR_WIDTH);   
     }
 }
