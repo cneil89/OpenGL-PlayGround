@@ -11,6 +11,7 @@
 #include <vector>
 #include <functional>
 #include <memory>
+#include <random>
 
 typedef signed char        int8_t;
 typedef short              int16_t;

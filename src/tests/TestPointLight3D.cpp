@@ -15,6 +15,7 @@ namespace test {
         : m_LightPos(0.5f, 0.5f, 0.0f)
     {
         glEnable(GL_DEPTH_TEST);
+        srand((uint32_t)time(NULL));
 
         float vertices[] = {
             // positions                // normals                 // texture coords
@@ -61,7 +62,17 @@ namespace test {
             -0.5f,  0.5f, -0.5f,        0.0f,  1.0f,  0.0f,        0.0f,  1.0f
         };
 
-
+        m_CubePositions.push_back(glm::vec3( 2.0f,  5.0f, -15.0f));
+        // m_CubePositions.push_back(glm::vec3(-1.5f, -2.2f, -2.5f));
+        // m_CubePositions.push_back(glm::vec3(-3.8f, -2.0f, -12.3f));
+        // m_CubePositions.push_back(glm::vec3( 2.4f, -0.4f, -3.5f));
+        // m_CubePositions.push_back(glm::vec3(-1.7f,  3.0f, -7.5f));
+        // m_CubePositions.push_back(glm::vec3( 1.3f, -2.0f, -2.5f));
+        // m_CubePositions.push_back(glm::vec3( 1.5f,  2.0f, -2.5f));
+        // m_CubePositions.push_back(glm::vec3( 1.5f,  0.2f, -1.5f));
+        // m_CubePositions.push_back(glm::vec3(-1.3f,  1.0f, -1.5f));
+        // m_CubePositions.push_back(glm::vec3( 0.5f, -4.3f, -9.0f));
+    
         m_VAO = std::make_unique<VertexArray>();
         m_VertexBuffer = std::make_unique<VertexBuffer>(vertices, 36 * 8 * sizeof(float));
         VertexBufferLayout layout;
@@ -97,22 +108,8 @@ namespace test {
 
     void TestPointLight3D::OnRender()
     {
-        GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f););
+        GLCall(glClearColor(0.1f, 0.1f, 0.1f, 1.0f););
         GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
-
-        glm::vec3 m_CubePositions[] = {
-            glm::vec3( 0.0f,  0.0f,  0.0f),
-            glm::vec3( 2.0f,  5.0f, -15.0f),
-            glm::vec3(-1.5f, -2.2f, -2.5f),
-            glm::vec3(-3.8f, -2.0f, -12.3f),
-            glm::vec3( 2.4f, -0.4f, -3.5f),
-            glm::vec3(-1.7f,  3.0f, -7.5f),
-            glm::vec3( 1.3f, -2.0f, -2.5f),
-            glm::vec3( 1.5f,  2.0f, -2.5f),
-            glm::vec3( 1.5f,  0.2f, -1.5f),
-            glm::vec3(-1.3f,  1.0f, -1.5f),
-            glm::vec3( 0.5f, -4.3f, -9.0f)
-        };
 
         m_Texture1->Bind(0);
         m_Texture2->Bind(1);
@@ -140,7 +137,7 @@ namespace test {
         m_Shader->SetUniformMat4f("projection", projection);
 
         m_VAO->Bind();
-        for (uint32_t i = 0; i < 11; ++i)
+        for (uint32_t i = 0; i < m_CubePositions.size(); ++i)
         {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, m_CubePositions[i]);
@@ -167,6 +164,37 @@ namespace test {
 
     void TestPointLight3D::OnImGuiRender()
     {
+        if (ImGui::Button("Add cube"))
+            GenerateCube();
+        
         ImGui::SliderFloat3("Light Position", &m_LightPos.x, -10.0f, 10.0f);
+    }
+
+    void TestPointLight3D::GenerateCube()
+    {
+        glm::vec3 cube(randomNum(-2.5f, 2.5f), randomNum(-2.5f, 2.5f), randomNum(-10.0f, 0.0f));
+
+        bool exists = false;
+        for (auto c : m_CubePositions)
+        {
+            if (cube == c)
+            {
+                exists = true;
+                break;
+            }
+        }
+        if (!exists)
+            m_CubePositions.push_back(cube);
+        else
+            GenerateCube();
+    }
+
+    float TestPointLight3D::randomNum(float min, float max)
+    {
+        std::random_device rd;
+        std::mt19937 gen(rd());
+
+        std::uniform_real_distribution<float> dis(min, max);
+        return (float)dis(gen);
     }
 }
