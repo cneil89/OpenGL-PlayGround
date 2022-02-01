@@ -88,7 +88,7 @@ namespace test {
 
     }
 
-    void TestCube3D::OnRender()
+    void TestCube3D::OnRender(Camera& camera)
     {
         GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
         GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));

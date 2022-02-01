@@ -15,7 +15,7 @@ namespace test {
         ~TestPointLight3D();
 
         void OnUpdate(float deltaTime) override;
-        void OnRender() override;
+        void OnRender(Camera& camera) override;
         void OnImGuiRender() override;
 
     private:

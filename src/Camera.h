@@ -11,7 +11,9 @@ enum Camera_Movement {
     FORWARD,
     BACKWARD,
     LEFT,
-    RIGHT
+    RIGHT,
+    UP,
+    DOWN
 };
 
 // Default camera values
@@ -35,6 +37,7 @@ public:
 
     // testing
     float GetZoom();
+    glm::vec3 GetPosition() {return m_Position;}
 
 private:
     void updateCameraVectors();

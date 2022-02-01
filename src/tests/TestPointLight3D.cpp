@@ -62,16 +62,8 @@ namespace test {
             -0.5f,  0.5f, -0.5f,        0.0f,  1.0f,  0.0f,        0.0f,  1.0f
         };
 
+        // TODO: remove this, no need to push it from the code base when it can be added to with IMGUI Button
         m_CubePositions.push_back(glm::vec3( 2.0f,  5.0f, -15.0f));
-        // m_CubePositions.push_back(glm::vec3(-1.5f, -2.2f, -2.5f));
-        // m_CubePositions.push_back(glm::vec3(-3.8f, -2.0f, -12.3f));
-        // m_CubePositions.push_back(glm::vec3( 2.4f, -0.4f, -3.5f));
-        // m_CubePositions.push_back(glm::vec3(-1.7f,  3.0f, -7.5f));
-        // m_CubePositions.push_back(glm::vec3( 1.3f, -2.0f, -2.5f));
-        // m_CubePositions.push_back(glm::vec3( 1.5f,  2.0f, -2.5f));
-        // m_CubePositions.push_back(glm::vec3( 1.5f,  0.2f, -1.5f));
-        // m_CubePositions.push_back(glm::vec3(-1.3f,  1.0f, -1.5f));
-        // m_CubePositions.push_back(glm::vec3( 0.5f, -4.3f, -9.0f));
     
         m_VAO = std::make_unique<VertexArray>();
         m_VertexBuffer = std::make_unique<VertexBuffer>(vertices, 36 * 8 * sizeof(float));
@@ -106,7 +98,7 @@ namespace test {
 
     }
 
-    void TestPointLight3D::OnRender()
+    void TestPointLight3D::OnRender(Camera& camera)
     {
         GLCall(glClearColor(0.1f, 0.1f, 0.1f, 1.0f););
         GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
@@ -115,7 +107,8 @@ namespace test {
         m_Texture2->Bind(1);
         m_Shader->Bind();
         m_Shader->SetUniformVec3f("light.position", m_LightPos);
-        m_Shader->SetUniformVec3f("viewPos", 0.0f, 0.0f, -3.0f);
+        // m_Shader->SetUniformVec3f("viewPos", 0.0f, 0.0f, -3.0f);
+        m_Shader->SetUniformVec3f("viewPos", camera.GetPosition());
         
         // Light Properties
         m_Shader->SetUniformVec3f("light.ambient",  0.2f, 0.2f, 0.2f);
@@ -131,7 +124,8 @@ namespace test {
 
         glm::mat4 view          = glm::mat4(1.0f);
         glm::mat4 projection    = glm::mat4(1.0f);
-        view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f)); 
+        // view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f)); 
+        view = camera.GetViewMatrix(); 
         projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         m_Shader->SetUniformMat4f("view", view);
         m_Shader->SetUniformMat4f("projection", projection);

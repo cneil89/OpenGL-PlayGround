@@ -14,7 +14,7 @@ namespace test {
         ~TestTriangle2D();
 
         void OnUpdate(float deltaTime) override;
-        void OnRender() override;
+        void OnRender(Camera& camera) override;
         void OnImGuiRender() override;
     private:
         std::unique_ptr<VertexArray> m_VAO;

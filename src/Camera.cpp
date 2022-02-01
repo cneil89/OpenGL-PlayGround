@@ -44,6 +44,10 @@ void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
         m_Position -= m_Right * velocity;
     if (direction == RIGHT)
         m_Position += m_Right * velocity;
+    if (direction == UP)
+        m_Position += m_Up * velocity;
+    if (direction == DOWN)
+        m_Position -= m_Up * velocity;
 }
 
 // Processes input received from a mouse input system.
