@@ -97,8 +97,3 @@ void Camera::updateCameraVectors()
     m_Right = glm::normalize(glm::cross(m_Front, m_WorldUp));
     m_Up    = glm::normalize(glm::cross(m_Right, m_Front));
 }
-
-float Camera::GetZoom()
-{
-    return m_Zoom;
-}

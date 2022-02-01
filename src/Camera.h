@@ -35,9 +35,8 @@ public:
     void ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
     void ProcessMouseScroll(float yoffset);
 
-    // testing
-    float GetZoom();
-    glm::vec3 GetPosition() {return m_Position;}
+    float GetZoom() { return m_Zoom; }
+    glm::vec3 GetPosition() { return m_Position; }
 
 private:
     void updateCameraVectors();
