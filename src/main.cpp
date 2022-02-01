@@ -11,7 +11,6 @@ float lastX = SCR_WIDTH / 2.0f;
 float lastY = SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
 
-
 #include "tests/Test.h"
 #include "tests/TestClearColor.h"
 #include "tests/TestTexture2D.h"
@@ -25,7 +24,6 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
 const char* APP_NAME = "OpenGL Tutorial";
-
 
 // Timing
 float deltaTime = 0.0f;
@@ -66,6 +64,7 @@ int main()
     glfwSetScrollCallback(window, scroll_callback);
 
     std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
+    std::cout << "ImGui  Version: " << ImGui::GetVersion() << std::endl;
 
     glfwSwapInterval(1);
 

@@ -160,6 +160,11 @@ namespace test {
         if (ImGui::Button("Add cube"))
             GenerateCube();
         
+        ImGui::SameLine();
+        
+        if (ImGui::Button("Remove Cube") && m_CubePositions.size() > 0)
+            m_CubePositions.pop_back();
+        
         ImGui::SliderFloat3("Light Position", &m_LightPos.x, -10.0f, 10.0f);
     }
 
