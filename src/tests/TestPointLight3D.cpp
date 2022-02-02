@@ -10,9 +10,12 @@
 
 namespace test {
 
+// View Ports for object placement
+#define MIN_VP -3.0f
+#define MAX_VP  3.0f
+#define MAX_PLIGHT 6
 
     TestPointLight3D::TestPointLight3D()
-        : m_LightPos(0.5f, 0.5f, 0.0f)
     {
         glEnable(GL_DEPTH_TEST);
         srand((uint32_t)time(NULL));
@@ -61,9 +64,6 @@ namespace test {
             -0.5f,  0.5f,  0.5f,        0.0f,  1.0f,  0.0f,        0.0f,  0.0f,
             -0.5f,  0.5f, -0.5f,        0.0f,  1.0f,  0.0f,        0.0f,  1.0f
         };
-
-        // TODO: remove this, no need to push it from the code base when it can be added to with IMGUI Button
-        m_CubePositions.push_back(glm::vec3( 2.0f,  5.0f, -15.0f));
     
         m_VAO = std::make_unique<VertexArray>();
         m_VertexBuffer = std::make_unique<VertexBuffer>(vertices, 36 * 8 * sizeof(float));
@@ -85,7 +85,6 @@ namespace test {
         m_Shader->Bind();
         m_Shader->SetUniform1i("material.diffuse", 0);
         m_Shader->SetUniform1i("material.specular", 1);
-
     }
 
     TestPointLight3D::~TestPointLight3D () 
@@ -105,22 +104,20 @@ namespace test {
 
         m_Texture1->Bind(0);
         m_Texture2->Bind(1);
+
         m_Shader->Bind();
-        m_Shader->SetUniformVec3f("light.position", m_LightPos);
-        // m_Shader->SetUniformVec3f("viewPos", 0.0f, 0.0f, -3.0f);
         m_Shader->SetUniformVec3f("viewPos", camera.GetPosition());
-        
-        // Light Properties
-        m_Shader->SetUniformVec3f("light.ambient",  0.2f, 0.2f, 0.2f);
-        m_Shader->SetUniformVec3f("light.diffuse",  0.5f, 0.5f, 0.5f);
-        m_Shader->SetUniformVec3f("light.specular", 1.0f, 1.0f, 1.0f);
-
-        m_Shader->SetUniform1f("light.constant",  1.0f);
-        m_Shader->SetUniform1f("light.linear",    0.09f);
-        m_Shader->SetUniform1f("light.quadratic", 0.032f);
-
-        // Material Properties
         m_Shader->SetUniform1f("material.shininess", 32.0f);
+        
+        m_Shader->SetUniformVec3f("dirLight.direction", -0.2f, -1.0f, -0.3f);
+        m_Shader->SetUniformVec3f("dirLight.ambient", 0.05f, 0.05f, 0.05f);
+        m_Shader->SetUniformVec3f("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
+        m_Shader->SetUniformVec3f("dirLight.specular", 0.5f, 0.5f, 0.5f);
+
+        m_Shader->SetUniform1i("pointLightNum", m_LightPositions.size());
+
+        for (uint32_t i = 0; i < m_LightPositions.size(); i++)
+            SetPointLightProps(i);
 
         glm::mat4 view          = glm::mat4(1.0f);
         glm::mat4 projection    = glm::mat4(1.0f);
@@ -135,8 +132,6 @@ namespace test {
             glm::mat4 model = glm::mat4(1.0f);
             model = glm::translate(model, m_CubePositions[i]);
             float angle = 20.0f * i;
-            if (angle == 0)
-                angle = 10.0f;
             model = glm::rotate(model, glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
             m_Shader->SetUniformMat4f("model", model);
 
@@ -144,33 +139,58 @@ namespace test {
         }
 
         // Render lightcube
-        m_LightCubeShader->Bind();
-        m_LightCubeShader->SetUniformMat4f("projection", projection);
-        m_LightCubeShader->SetUniformMat4f("view", view);
-        glm::mat4 model(1.0f);
-        model = glm::translate(model, m_LightPos);
-        model = glm::scale(model, glm::vec3(0.2f));
-        m_LightCubeShader->SetUniformMat4f("model", model);
+        for (uint32_t i = 0; i < m_LightPositions.size(); i++)
+        {
+            m_LightCubeShader->Bind();
+            m_LightCubeShader->SetUniformMat4f("projection", projection);
+            m_LightCubeShader->SetUniformMat4f("view", view);
+            glm::mat4 model(1.0f);
+            model = glm::translate(model, m_LightPositions[i]);
+            model = glm::scale(model, glm::vec3(0.2f));
+            m_LightCubeShader->SetUniformMat4f("model", model);
 
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
     }
 
     void TestPointLight3D::OnImGuiRender()
     {
         if (ImGui::Button("Add cube"))
             GenerateCube();
-        
         ImGui::SameLine();
+        if (ImGui::Button("Add light") && m_LightPositions.size() < MAX_PLIGHT)
+            m_LightPositions.push_back(glm::vec3{0.0f, 0.0f, 0.0f});
         
-        if (ImGui::Button("Remove Cube") && m_CubePositions.size() > 0)
-            m_CubePositions.pop_back();
-        
-        ImGui::SliderFloat3("Light Position", &m_LightPos.x, -10.0f, 10.0f);
+        for (uint32_t i = 0; i < m_LightPositions.size() && i < MAX_PLIGHT; i++)
+        {
+            if(ImGui::Button(("Remove##" + std::to_string(i)).c_str()))
+                m_LightPositions.erase(m_LightPositions.begin() + i);
+            ImGui::SameLine();
+            ImGui::SliderFloat3(("Light #" + std::to_string(i)).c_str(), &m_LightPositions[i].x, MIN_VP, MAX_VP);
+        }
+
+        if (m_CubePositions.size() > 0)
+        {
+            ImGui::Begin("Cubes");
+            for (uint32_t i = 0; i < m_CubePositions.size(); i++)
+            {
+                std::string str = "Cube #";
+                str += std::to_string(i);
+                const char* cubeNum = str.c_str();
+
+                if (ImGui::Button(("Remove##" + std::to_string(i)).c_str()))
+                    m_CubePositions.erase(m_CubePositions.begin() + i);
+                ImGui::SameLine();
+                ImGui::SliderFloat3(cubeNum, &m_CubePositions[i].x, MIN_VP, MAX_VP);
+            }
+
+            ImGui::End();
+        }
     }
 
     void TestPointLight3D::GenerateCube()
     {
-        glm::vec3 cube(randomNum(-2.5f, 2.5f), randomNum(-2.5f, 2.5f), randomNum(-10.0f, 0.0f));
+        glm::vec3 cube(randomNum(MIN_VP, MAX_VP), randomNum(MIN_VP, MAX_VP), randomNum(-5.0f, 0.0f));
 
         bool exists = false;
         for (auto c : m_CubePositions)
@@ -185,6 +205,24 @@ namespace test {
             m_CubePositions.push_back(cube);
         else
             GenerateCube();
+    }
+
+    void TestPointLight3D::SetPointLightProps(uint32_t index)
+    {
+        if (index < MAX_PLIGHT)
+        {
+            std::string pointLight = "pointLights[";
+            pointLight += std::to_string(index);
+            pointLight += "]";
+
+            m_Shader->SetUniformVec3f(pointLight + ".position", m_LightPositions[index]);
+            m_Shader->SetUniformVec3f(pointLight + ".ambient",  0.2f, 0.2f, 0.2f);
+            m_Shader->SetUniformVec3f(pointLight + ".diffuse",  0.5f, 0.5f, 0.5f);
+            m_Shader->SetUniformVec3f(pointLight + ".specular", 1.0f, 1.0f, 1.0f);
+            m_Shader->SetUniform1f   (pointLight + ".constant",  1.0f);
+            m_Shader->SetUniform1f   (pointLight + ".linear",    0.09f);
+            m_Shader->SetUniform1f   (pointLight + ".quadratic", 0.032f);
+        }
     }
 
     float TestPointLight3D::randomNum(float min, float max)
