@@ -11,8 +11,8 @@
 namespace test {
 
 // View Ports for object placement
-#define MIN_VP -3.0f
-#define MAX_VP  3.0f
+#define MIN_VP -5.0f
+#define MAX_VP  5.0f
 #define MAX_PLIGHT 6
 
     TestPointLight3D::TestPointLight3D()
@@ -166,7 +166,7 @@ namespace test {
             if(ImGui::Button(("Remove##" + std::to_string(i)).c_str()))
                 m_LightPositions.erase(m_LightPositions.begin() + i);
             ImGui::SameLine();
-            ImGui::SliderFloat3(("Light #" + std::to_string(i)).c_str(), &m_LightPositions[i].x, MIN_VP, MAX_VP);
+            ImGui::SliderFloat3(("Light #" + std::to_string(i)).c_str(), &m_LightPositions[i].x, MIN_VP * 2, MAX_VP * 2);
         }
 
         if (m_CubePositions.size() > 0)
@@ -190,7 +190,7 @@ namespace test {
 
     void TestPointLight3D::GenerateCube()
     {
-        glm::vec3 cube(randomNum(MIN_VP, MAX_VP), randomNum(MIN_VP, MAX_VP), randomNum(-5.0f, 0.0f));
+        glm::vec3 cube(randomNum(MIN_VP, MAX_VP), randomNum(MIN_VP, MAX_VP), randomNum(MIN_VP, 0.0f));
 
         bool exists = false;
         for (auto c : m_CubePositions)
