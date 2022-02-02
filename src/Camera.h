@@ -34,6 +34,8 @@ public:
     void ProcessKeyboard(Camera_Movement direction, float deltaTime);
     void ProcessMouseMovement(float xoffset, float yoffset, GLboolean constrainPitch = true);
     void ProcessMouseScroll(float yoffset);
+    // Reset camera back to 0,0,0
+    void Reset();
 
     float GetZoom() { return m_Zoom; }
     glm::vec3 GetPosition() { return m_Position; }

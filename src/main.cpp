@@ -110,10 +110,17 @@ int main()
                 currentTest->OnUpdate(0.0f);
                 currentTest->OnRender(camera);
                 ImGui::Begin("Test");
-                if (currentTest != testMenu && ImGui::Button("<-"))
+                if (currentTest != testMenu)
                 {
-                    delete currentTest;
-                    currentTest = testMenu;
+                    if(ImGui::Button("<-"))
+                    {
+                        delete currentTest;
+                        currentTest = testMenu;
+                        camera.Reset();
+                    }
+                    ImGui::SameLine();
+                    if(ImGui::Button("Reset Camera"))
+                        camera.Reset();
                 }
                 currentTest->OnImGuiRender();
                 ImGui::Separator();
