@@ -37,7 +37,7 @@ namespace test {
 
         glm::mat4 m_Proj, m_View;
         glm::vec3 m_Translation;
-        std::vector<glm::vec3> m_CubePositions{{0.0f, 0.0f, 0.0f}};
-        std::vector<glm::vec3> m_LightPositions{glm::vec3{1.5f, 1.5f, 0.0f}};
+        std::vector<glm::vec3> m_CubePositions{};
+        std::vector<glm::vec3> m_LightPositions{};
     };
 }
