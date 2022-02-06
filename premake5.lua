@@ -29,7 +29,8 @@ project "OpenGL"
         "vendor/GLEW/include",
         "vendor/stb_image/include",
         "vendor/glm/include",
-        "vendor/imgui/include"
+        "vendor/imgui/include",
+        "vendor/assimp/include"
     }
 
     libdirs { "lib/" }
@@ -40,7 +41,8 @@ project "OpenGL"
         "Gdi32", 
         "shell32", 
         "glfw3_mt", 
-        "glew32s"
+        "glew32s",
+        "assimp-vc142-mtd"
     }
 
     defines {

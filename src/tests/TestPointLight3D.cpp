@@ -215,10 +215,10 @@ namespace test {
             pointLight += std::to_string(index);
             pointLight += "]";
 
-            m_Shader->SetUniformVec3f(pointLight + ".position", m_LightPositions[index]);
-            m_Shader->SetUniformVec3f(pointLight + ".ambient",  0.2f, 0.2f, 0.2f);
-            m_Shader->SetUniformVec3f(pointLight + ".diffuse",  0.5f, 0.5f, 0.5f);
-            m_Shader->SetUniformVec3f(pointLight + ".specular", 1.0f, 1.0f, 1.0f);
+            m_Shader->SetUniformVec3f(pointLight + ".position",  m_LightPositions[index]);
+            m_Shader->SetUniformVec3f(pointLight + ".ambient",   0.2f, 0.2f, 0.2f);
+            m_Shader->SetUniformVec3f(pointLight + ".diffuse",   0.5f, 0.5f, 0.5f);
+            m_Shader->SetUniformVec3f(pointLight + ".specular",  1.0f, 1.0f, 1.0f);
             m_Shader->SetUniform1f   (pointLight + ".constant",  1.0f);
             m_Shader->SetUniform1f   (pointLight + ".linear",    0.09f);
             m_Shader->SetUniform1f   (pointLight + ".quadratic", 0.032f);
