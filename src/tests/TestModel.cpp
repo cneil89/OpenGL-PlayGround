@@ -5,15 +5,17 @@
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <stb/stb_image.h>
 
 
 namespace test {
 
     TestModel::TestModel()
-        : m_Model("res/models/backpack/backpack.obj")
+        : m_Model("res/models/ebony-ivory/pistolasdante.obj")
     {
         glEnable(GL_DEPTH_TEST);
         // m_Model = std::make_unique<Model>("res/models/backpack/backpack.obj");
+        
         m_Shader = std::make_unique<Shader>("res/shaders/OGLBookModelLoading.shader");
     }
 
@@ -29,7 +31,7 @@ namespace test {
 
     void TestModel::OnRender(Camera& camera)
     {
-        GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
+        GLCall(glClearColor(0.05f, 0.05f, 0.05f, 1.0f););
         GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
         m_Shader->Bind();

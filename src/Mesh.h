@@ -1,8 +1,13 @@
 #pragma once
 #include "defines.h"
-
 #include "Shader.h"
-#include "glm/glm.hpp"
+
+#include <GL/glew.h>
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+
+#define MAX_BONE_INFLUENCE 4
 
 struct Vertex
 {
@@ -16,10 +21,10 @@ struct Vertex
     glm::vec3 Tangent;
     // bitangent
     glm::vec3 Bitangent;
-    // //bone indexes which will influence this vertex
-    // int m_BoneIDs[MAX_BONE_INFLUENCE];
-    // //weights from each bone
-    // float m_Weights[MAX_BONE_INFLUENCE];
+    //bone indexes which will influence this vertex
+    int m_BoneIDs[MAX_BONE_INFLUENCE];
+    //weights from each bone
+    float m_Weights[MAX_BONE_INFLUENCE];
 };
 
 
@@ -34,9 +39,9 @@ struct TextureStruct
 class Mesh
 {
 public:
-    std::vector<Vertex>         vertices;
-    std::vector<uint32_t>       indices;
-    std::vector<TextureStruct>        textures;
+    std::vector<Vertex>           vertices;
+    std::vector<uint32_t>         indices;
+    std::vector<TextureStruct>    textures;
 
     Mesh(std::vector<Vertex> verticies, std::vector<uint32_t> indicies, std::vector<TextureStruct> textures);
     void Draw(Shader &shader);

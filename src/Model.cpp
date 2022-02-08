@@ -96,7 +96,7 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
     // Same applie to other texture as the following list summarizes:
     // diffsue: texture_diffuseN
     // specular: texture_specularN
-    //normal: texture_normalN
+    // normal: texture_normalN
 
     // 1. diffuse maps
     std::vector<TextureStruct> diffuseMaps = loadMaterialTextures(material, aiTextureType_DIFFUSE, "texture_diffuse");
@@ -107,10 +107,12 @@ Mesh Model::processMesh(aiMesh *mesh, const aiScene *scene)
     textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
 
     //3. Normal maps
-    // std::vector<TextureStruct> normalMaps = loadMaterialTextures(materal, aiTextureType_HEIGHT, "texture_normal");
-    // textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
+    std::vector<TextureStruct> normalMaps = loadMaterialTextures(material, aiTextureType_HEIGHT, "texture_normal");
+    textures.insert(textures.end(), normalMaps.begin(), normalMaps.end());
 
     //4. height maps
+    std::vector<TextureStruct> heightMaps = loadMaterialTextures(material, aiTextureType_AMBIENT, "texture_height");
+    textures.insert(textures.end(), heightMaps.begin(), heightMaps.end());
 
     return Mesh(vertices, indices, textures);
 
@@ -166,10 +168,6 @@ uint32_t TextureFromFile(const std::string& path, const std::string &directory, 
             format = GL_RGB;
         else if (nrComponents == 4)
             format = GL_RGBA;
-
-        glBindTexture(GL_TEXTURE_2D, textureID);
-        glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
-        glGenerateMipmap(GL_TEXTURE_2D);
 
         glBindTexture(GL_TEXTURE_2D, textureID);
         glTexImage2D(GL_TEXTURE_2D, 0, format, width, height, 0, format, GL_UNSIGNED_BYTE, data);
