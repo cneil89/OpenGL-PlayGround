@@ -10,11 +10,6 @@
 
 namespace test {
 
-// View Ports for object placement
-#define MIN_VP -5.0f
-#define MAX_VP  5.0f
-#define MAX_PLIGHT 6
-
     TestPointLight3D::TestPointLight3D()
     {
         glEnable(GL_DEPTH_TEST);

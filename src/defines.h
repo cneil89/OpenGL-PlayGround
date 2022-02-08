@@ -25,3 +25,10 @@ typedef unsigned long long uint64_t;
 
 const uint32_t SCR_WIDTH = 940;
 const uint32_t SCR_HEIGHT = 680;
+
+
+// View Ports for object placement
+#define MIN_VP -5.0f
+#define MAX_VP  5.0f
+// MAX Point Lights
+#define MAX_PLIGHT 6
