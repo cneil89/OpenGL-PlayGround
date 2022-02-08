@@ -77,6 +77,7 @@ namespace test {
         
         for (uint32_t i = 0; i < m_LightPositions.size() && i < 1; i++)
         {
+            ImGui::Text("Only 1 Light enabled for this test.");
             if(ImGui::Button(("Remove##" + std::to_string(i)).c_str()))
                 m_LightPositions.erase(m_LightPositions.begin() + i);
             ImGui::SameLine();
