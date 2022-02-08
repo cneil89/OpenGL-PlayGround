@@ -32,7 +32,6 @@ float lastFrame = 0.0f;
 
 int main()
 {
-
     GLFWwindow* window;
     if (!glfwInit())
     {
@@ -86,7 +85,7 @@ int main()
         test::Test* currentTest = nullptr;
         test::TestMenu* testMenu = new test::TestMenu(currentTest);
         // currentTest = testMenu
-        currentTest = new test::TestModel();
+        currentTest = new test::TestPointLight3D();
 
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");
         testMenu->RegisterTest<test::TestTexture2D>("2D Texture");

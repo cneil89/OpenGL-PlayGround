@@ -42,7 +42,7 @@ project "OpenGL"
         "shell32", 
         "glfw3_mt", 
         "glew32s",
-        "assimp-vc142-mtd"
+        "assimp-vc142-mt"
     }
 
     defines {

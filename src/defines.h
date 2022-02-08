@@ -3,12 +3,13 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include <string>
 #include <iostream>
 #include <fstream>
-#include <string>
 #include <sstream>
-#include <unordered_map>
 #include <vector>
+#include <map>
+#include <unordered_map>
 #include <functional>
 #include <memory>
 #include <random>

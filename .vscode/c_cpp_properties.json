@@ -8,7 +8,8 @@
                 "${workspaceFolder}/vendor/GLEW/include/",
                 "${workspaceFolder}/vendor/stb_image/include",
                 "${workspaceFolder}/vendor/glm/include",
-                "${workspaceFolder}/vendor/imgui/include"
+                "${workspaceFolder}/vendor/imgui/include",
+                "${workspaceFolder}/vendor/assimp/include"
             ],
             "defines": [
                 "_DEBUG",

@@ -2,6 +2,7 @@
 
 #include "Test.h"
 #include "defines.h"
+#include "Model.h"
 
 namespace test {
 
@@ -19,7 +20,9 @@ namespace test {
     private:
         glm::mat4 m_Proj, m_View;
         glm::vec3 m_Translation;
-        std::vector<glm::vec3> m_CubePositions{};
-        std::vector<glm::vec3> m_LightPositions{};
+
+        std::unique_ptr<Shader> m_Shader;
+        Model m_Model;
+
     };
 }
