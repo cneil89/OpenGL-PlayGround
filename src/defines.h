@@ -31,4 +31,5 @@ const uint32_t SCR_HEIGHT = 680;
 #define MIN_VP -5.0f
 #define MAX_VP  5.0f
 // MAX Point Lights
+// NOTE: If changing this defines, makesure to change the max number define in shader.
 #define MAX_PLIGHT 6

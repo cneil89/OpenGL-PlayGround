@@ -97,7 +97,8 @@ int main()
         while (!glfwWindowShouldClose(window))
         {
 
-            GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
+            // GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
+            GLCall(glClearColor(0.033f, 0.555f, 0.667f, 1.0f));
             renderer.Clear();
             processInput(window);
             
@@ -206,8 +207,6 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
     {
         glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
     }
-
-
 }
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)

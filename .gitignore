@@ -1,6 +1,9 @@
 build/*
 OpenGL.make
-*.ini
-OpenGL.sln
-OpenGL.vcxproj*
-.vs
+
+# Visual Studio files and folder
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
