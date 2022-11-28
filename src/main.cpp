@@ -19,6 +19,7 @@ bool firstMouse = true;
 #include "tests/TestPointLight3D.h"
 #include "tests/TestModel.h"
 #include "tests/TestDepth.h"
+#include "tests/TestStencil.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -86,7 +87,7 @@ int main()
         test::Test* currentTest = nullptr;
         test::TestMenu* testMenu = new test::TestMenu(currentTest);
         // currentTest = testMenu
-        currentTest = new test::TestDepth();
+        currentTest = new test::TestStencil();
 
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");
         testMenu->RegisterTest<test::TestTexture2D>("2D Texture");
@@ -95,6 +96,7 @@ int main()
         testMenu->RegisterTest<test::TestPointLight3D>("Point Light");
         testMenu->RegisterTest<test::TestModel>("Model Loading");
         testMenu->RegisterTest<test::TestDepth>("Depth Testing");
+        testMenu->RegisterTest<test::TestStencil>("Stencil");
 
         while (!glfwWindowShouldClose(window))
         {

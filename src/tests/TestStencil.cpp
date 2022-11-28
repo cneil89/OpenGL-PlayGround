@@ -1,13 +1,19 @@
-#include "TestDepth.h"
+#include "TestStencil.h"
+
+#include "TestStencil.h"
 #include "imgui/imgui.h"
 
 namespace test {
 
-    TestDepth::TestDepth()
+    TestStencil::TestStencil()
+        : m_Scale(1.05f)
     {
 
         glEnable(GL_DEPTH_TEST);
         glDepthFunc(GL_LESS);
+        glEnable(GL_STENCIL_TEST);
+        glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+        glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
 
         float cubeVertices[] = {
             // positions             // texture Coords
@@ -63,11 +69,11 @@ namespace test {
             -5.0f, -0.5f, -5.0f,     0.0f, 2.0f,
              5.0f, -0.5f, -5.0f,     2.0f, 2.0f								
         };
-        m_ShaderMap["Texture"] = "res/shaders/OGLBookDepthTesting.shader";
-        m_ShaderMap["Depth Test"] = "res/shaders/OGLBookDepthTesting2.shader";
+        m_ShaderMap["Texture"] = "res/shaders/OGLBookStencil.shader";
 
         m_ActiveShader = m_ShaderMap["Texture"];
         m_Shader = std::make_unique<Shader>(m_ActiveShader);
+        m_SingleColorShader = std::make_unique<Shader>("res/shaders/OGLBookStencilSingleColor.shader");
         
         //CUBE
         m_CubeVAO = std::make_unique<VertexArray>();
@@ -91,46 +97,89 @@ namespace test {
 
     }
 
-    TestDepth::~TestDepth()
+    TestStencil::~TestStencil()
     {
+        glDisable(GL_STENCIL_TEST);
         glDisable(GL_DEPTH_TEST);
     }
 
-    void TestDepth::OnUpdate(float deltaTime) 
+    void TestStencil::OnUpdate(float deltaTime) 
     {
 
     }
 
-    void TestDepth::OnRender(Camera& camera) 
+    void TestStencil::OnRender(Camera& camera) 
     {
-        glClearColor(0.15f, 0.15f, 0.15f, 1.0f);
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClearColor(0.3f, 0.3f, 0.4f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
         m_CubeTexture->Bind(0);
         m_PlaneTexture->Bind(1);
 
-        m_Shader->Bind();
+        m_SingleColorShader->Bind();
         glm::mat4 model = glm::mat4(1.0f);
-        glm::mat4 view = glm::mat4(1.0f);
-        glm::mat4 projection = glm::mat4(1.0f);
-        view = camera.GetViewMatrix();
-        projection = glm::perspective(glm::radians(camera.GetZoom()), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        glm::mat4 view = camera.GetViewMatrix();
+        glm::mat4 projection = glm::perspective(glm::radians(camera.GetZoom()), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        m_SingleColorShader->SetUniformMat4f("view", view);
+        m_SingleColorShader->SetUniformMat4f("projection", projection);
+
+        m_Shader->Bind();
         m_Shader->SetUniformMat4f("view", view);
         m_Shader->SetUniformMat4f("projection", projection);
-        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
-        m_CubeVAO->Bind();
-        m_Shader->SetUniform1i("texture1", 0);
-        m_Shader->SetUniformMat4f("model", model);
 
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-
+        glStencilMask(0x00);
         m_PlaneVAO->Bind();
         m_Shader->SetUniform1i("texture1", 1);
         m_Shader->SetUniformMat4f("model", glm::mat4(1.0f));
-        glDrawArrays(GL_TRIANGLES, 0 ,36);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+        m_PlaneVAO->Unbind();
+
+
+
+        // 1st. render pass, draw objects as normal, writing to the stencil buffer
+        glStencilFunc(GL_ALWAYS, 1, 0xFF);
+        glStencilMask(0xFF);
+
+        m_CubeVAO->Bind();
+        m_Shader->SetUniform1i("texture1", 0);
+        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
+        m_Shader->SetUniformMat4f("model", model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
+        m_Shader->SetUniformMat4f("model", model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        // 2nd. render pass: now draw slightly scaled versions of the objects, this time disabling stencil writing.
+        // Because the stencil buffer is now filled with several 1s. The parts of the buffer that are 1 are not drawn, thus only drawing 
+        // the objects' size differences, making it look like borders.
+        // -----------------------------------------------------------------------------------------------------------------------------
+        glStencilFunc(GL_NOTEQUAL, 1, 0xFF);
+        glStencilMask(0xFF);
+
+        glDisable(GL_DEPTH_TEST);
+        m_SingleColorShader->Bind();
+        m_CubeVAO->Bind();
+        // m_Shader->SetUniform1i("texture1", 0);
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
+        model = glm::scale(model, glm::vec3(m_Scale, m_Scale, m_Scale));
+        m_SingleColorShader->SetUniformMat4f("model", model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+
+        model = glm::mat4(1.0f);
+        model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(m_Scale, m_Scale, m_Scale));
+        m_SingleColorShader->SetUniformMat4f("model", model);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
+        m_CubeVAO->Unbind();
+        glStencilMask(0xFF);
+        glStencilFunc(GL_ALWAYS, 0, 0xFF);
+        glEnable(GL_DEPTH_TEST);
+
     }
 
-    void TestDepth::OnImGuiRender() 
+    void TestStencil::OnImGuiRender() 
     {
         for (auto &item : m_ShaderMap)
             if(ImGui::RadioButton(item.first.c_str(), m_ActiveShader == item.second)) 
