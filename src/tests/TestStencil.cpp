@@ -6,7 +6,7 @@
 namespace test {
 
     TestStencil::TestStencil()
-        : m_Scale(1.05f)
+        : m_Scale(1.08f)
     {
 
         glEnable(GL_DEPTH_TEST);

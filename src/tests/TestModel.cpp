@@ -72,16 +72,21 @@ namespace test {
 
     void TestModel::OnImGuiRender()
     {
-        if (ImGui::Button("Add light") && m_LightPositions.size() < 1)
+        if (ImGui::Button("Add light") && m_LightPositions.size() < 2)
             m_LightPositions.push_back(glm::vec3{0.0f, 0.0f, 0.0f});
         
-        for (uint32_t i = 0; i < m_LightPositions.size() && i < 1; i++)
+        ImGui::SameLine();
+        ImGui::Text("Max 2 Lights");
+
+
+        for (uint32_t i = 0; i < m_LightPositions.size(); i++)
         {
-            ImGui::Text("Only 1 Light enabled for this test.");
-            if(ImGui::Button(("Remove##" + std::to_string(i)).c_str()))
+            ImGui::PushID(i);
+            if(ImGui::Button("Remove"))
                 m_LightPositions.erase(m_LightPositions.begin() + i);
             ImGui::SameLine();
-            ImGui::SliderFloat3(("Light #" + std::to_string(i)).c_str(), &m_LightPositions[i].x, MIN_VP * 2, MAX_VP * 2);
+            ImGui::SliderFloat3(("Light"), &m_LightPositions[i].x, MIN_VP * 2, MAX_VP * 2);
+            ImGui::PopID();
         }
     }
 

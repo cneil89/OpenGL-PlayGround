@@ -103,7 +103,7 @@ namespace test {
 
     void TestDepth::OnRender(Camera& camera) 
     {
-        glClearColor(0.15f, 0.15f, 0.15f, 1.0f);
+        glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
         m_CubeTexture->Bind(0);
