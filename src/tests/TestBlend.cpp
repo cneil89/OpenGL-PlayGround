@@ -188,11 +188,5 @@ namespace test {
 
     void TestBlend::OnImGuiRender() 
     {
-        for (auto &item : m_ShaderMap)
-            if(ImGui::RadioButton(item.first.c_str(), m_ActiveShader == item.second)) 
-            {
-                m_ActiveShader = item.second;
-                m_Shader = std::make_unique<Shader>(m_ActiveShader);
-            }
     }
 }
