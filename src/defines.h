@@ -2,6 +2,7 @@
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <glm/gtx/norm.hpp>
 
 #include <string>
 #include <iostream>

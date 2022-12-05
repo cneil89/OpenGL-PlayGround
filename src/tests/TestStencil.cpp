@@ -1,12 +1,12 @@
 #include "TestStencil.h"
 
-#include "TestStencil.h"
 #include "imgui/imgui.h"
 
 namespace test {
 
     TestStencil::TestStencil()
-        : m_Scale(1.08f)
+        : Test("Stencil Test"),
+            m_Scale(1.07f)
     {
 
         glEnable(GL_DEPTH_TEST);

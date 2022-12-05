@@ -4,7 +4,7 @@
 namespace test {
 
     TestMenu::TestMenu(Test*& currentTestPointer)
-        : m_CurrentTest(currentTestPointer)
+        : Test("Test Menu"), m_CurrentTest(currentTestPointer)
     {
     
     }

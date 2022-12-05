@@ -9,7 +9,8 @@
 namespace test {
 
     TestTriangle2D::TestTriangle2D()
-        : m_Proj(glm::ortho(0.0f, (float)SCR_WIDTH, 0.0f, (float)SCR_HEIGHT, -1.0f, 1.0f)),
+        : Test("Triange 2D"),
+            m_Proj(glm::ortho(0.0f, (float)SCR_WIDTH, 0.0f, (float)SCR_HEIGHT, -1.0f, 1.0f)),
             m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))),
             m_Translation(450, 340, 0)
     {

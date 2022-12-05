@@ -10,7 +10,7 @@ private:
     uint8_t* m_LocalBuffer;
     int32_t m_Width, m_Height, m_BPP;
 public:
-    Texture(const std::string& path, bool alpha = true);
+    Texture(const std::string& path, bool clamp = false, bool flip = true, bool alpha = true);
     ~Texture();
 
     void Bind(uint32_t slot = 0) const;

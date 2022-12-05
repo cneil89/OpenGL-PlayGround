@@ -12,7 +12,7 @@
 namespace test {
 
     TestModel::TestModel()
-        : m_Model("res/models/backpack/backpack.obj")
+        : Test("Model"), m_Model("res/models/backpack/backpack.obj")
         // : m_Model("res/models/donut/donut.obj")
         // : m_Model("res/models/cubes/cubes.obj")
     {
@@ -77,7 +77,6 @@ namespace test {
         
         ImGui::SameLine();
         ImGui::Text("Max 2 Lights");
-
 
         for (uint32_t i = 0; i < m_LightPositions.size(); i++)
         {

@@ -10,8 +10,8 @@
 
 namespace test {
 
-
     TestCube3D::TestCube3D()
+        : Test("3D Cube")
     {
         glEnable(GL_DEPTH_TEST);
 

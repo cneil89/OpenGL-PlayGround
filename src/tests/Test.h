@@ -8,12 +8,15 @@ namespace test {
     class Test
     {
     public:
-        Test() {}
+        Test(std::string name) : m_TestName(name) {}
         virtual ~Test() {}
 
         virtual void OnUpdate(float deltaTime) {}
         virtual void OnRender(Camera& camera) {}
         virtual void OnImGuiRender() {}
+        virtual std::string getTestName() { return m_TestName; }
+    private:
+        std::string m_TestName;
     };
 
     class TestMenu : public Test

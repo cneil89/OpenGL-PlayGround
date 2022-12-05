@@ -20,6 +20,7 @@ bool firstMouse = true;
 #include "tests/TestModel.h"
 #include "tests/TestDepth.h"
 #include "tests/TestStencil.h"
+#include "tests/TestBlend.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -87,7 +88,7 @@ int main()
         test::Test* currentTest = nullptr;
         test::TestMenu* testMenu = new test::TestMenu(currentTest);
         // currentTest = testMenu
-        currentTest = new test::TestStencil();
+        currentTest = new test::TestBlend();
 
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");
         testMenu->RegisterTest<test::TestTexture2D>("2D Texture");
@@ -97,6 +98,7 @@ int main()
         testMenu->RegisterTest<test::TestModel>("Model Loading");
         testMenu->RegisterTest<test::TestDepth>("Depth Testing");
         testMenu->RegisterTest<test::TestStencil>("Stencil");
+        testMenu->RegisterTest<test::TestBlend>("Blending");
 
         while (!glfwWindowShouldClose(window))
         {
@@ -115,7 +117,7 @@ int main()
             {
                 currentTest->OnUpdate(0.0f);
                 currentTest->OnRender(camera);
-                ImGui::Begin("Test");
+                ImGui::Begin(currentTest->getTestName().c_str());
                 if (currentTest != testMenu)
                 {
                     if(ImGui::Button("<-"))
@@ -170,9 +172,9 @@ void processInput(GLFWwindow* window)
         camera.ProcessKeyboard(LEFT, deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         camera.ProcessKeyboard(RIGHT, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_E) == GLFW_PRESS)
         camera.ProcessKeyboard(UP, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_Q) == GLFW_PRESS)
         camera.ProcessKeyboard(DOWN, deltaTime);
 }
 

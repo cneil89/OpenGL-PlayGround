@@ -11,6 +11,7 @@
 namespace test {
 
     TestPointLight3D::TestPointLight3D()
+        : Test("Point Light 3D")
     {
         glEnable(GL_DEPTH_TEST);
         srand((uint32_t)time(NULL));

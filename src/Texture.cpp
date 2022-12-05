@@ -1,11 +1,14 @@
 #include "Texture.h"
 #include "stb/stb_image.h"
 
-Texture::Texture(const std::string& path, bool alpha)
+Texture::Texture(const std::string& path, bool clamp, bool flip, bool alpha)
     : m_RendererID(0), m_FilePath(path), m_LocalBuffer(nullptr),
     m_Width(0), m_Height(0), m_BPP(0)
 {
     stbi_set_flip_vertically_on_load(1);
+    if (!flip)
+        stbi_set_flip_vertically_on_load(0);
+
     m_LocalBuffer = stbi_load(path.c_str(), &m_Width, &m_Height, &m_BPP, 4);
 
     GLCall(glGenTextures(1, &m_RendererID));
@@ -13,10 +16,17 @@ Texture::Texture(const std::string& path, bool alpha)
 
     GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR));
     GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
-     // GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
-    // GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
-    GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
-    GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
+
+    if (clamp)
+    {
+        GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+        GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+    }
+    else
+    {
+        GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
+        GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
+    }
 
     if (!alpha)
     {
