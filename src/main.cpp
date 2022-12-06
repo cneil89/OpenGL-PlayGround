@@ -21,6 +21,7 @@ bool firstMouse = true;
 #include "tests/TestDepth.h"
 #include "tests/TestStencil.h"
 #include "tests/TestBlend.h"
+#include "tests/TestCulling.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -88,7 +89,7 @@ int main()
         test::Test* currentTest = nullptr;
         test::TestMenu* testMenu = new test::TestMenu(currentTest);
         // currentTest = testMenu
-        currentTest = new test::TestBlend();
+        currentTest = new test::TestCulling();
 
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");
         testMenu->RegisterTest<test::TestTexture2D>("2D Texture");
@@ -99,12 +100,14 @@ int main()
         testMenu->RegisterTest<test::TestDepth>("Depth Testing");
         testMenu->RegisterTest<test::TestStencil>("Stencil");
         testMenu->RegisterTest<test::TestBlend>("Blending");
+        testMenu->RegisterTest<test::TestCulling>("Culling");
 
         while (!glfwWindowShouldClose(window))
         {
 
             // GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
-            GLCall(glClearColor(0.033f, 0.555f, 0.667f, 1.0f));
+            // GLCall(glClearColor(0.033f, 0.555f, 0.667f, 1.0f));
+            GLCall(glClearColor(0.255f, 0.004f, 0.522f, 1.0f));
             renderer.Clear();
             processInput(window);
             
@@ -204,10 +207,10 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
 
         float xoffset = xpos - lastX;
         float yoffset = lastY - ypos; // reversed since y -coordinates go from bottom to top.
+        camera.ProcessMouseMovement(xoffset, yoffset);
+
         lastX = xpos;
         lastY = ypos;
-
-        camera.ProcessMouseMovement(xoffset, yoffset);
     }
     else
     {
