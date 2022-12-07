@@ -114,7 +114,7 @@ namespace test {
 
         m_CubeVAO->Bind();
         m_Shader->SetUniform1i("texture1", 0);
-        model = glm::translate(model, glm::vec3(-1.0f, 0.0f, -1.0f));
+        model = glm::translate(model, glm::vec3(0.0f, 0.0f, 0.0f));
         m_Shader->SetUniformMat4f("model", model);
         glDrawArrays(GL_TRIANGLES, 0, 36);
     }
