@@ -22,6 +22,7 @@ bool firstMouse = true;
 #include "tests/TestStencil.h"
 #include "tests/TestBlend.h"
 #include "tests/TestCulling.h"
+#include "tests/TestFramebuffer.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -89,7 +90,7 @@ int main()
         test::Test* currentTest = nullptr;
         test::TestMenu* testMenu = new test::TestMenu(currentTest);
         // currentTest = testMenu
-        currentTest = new test::TestCulling();
+        currentTest = new test::TestFramebuffer();
 
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");
         testMenu->RegisterTest<test::TestTexture2D>("2D Texture");
@@ -101,6 +102,7 @@ int main()
         testMenu->RegisterTest<test::TestStencil>("Stencil");
         testMenu->RegisterTest<test::TestBlend>("Blending");
         testMenu->RegisterTest<test::TestCulling>("Culling");
+        testMenu->RegisterTest<test::TestFramebuffer>("Framebuffer");
 
         while (!glfwWindowShouldClose(window))
         {
