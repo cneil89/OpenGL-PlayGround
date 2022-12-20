@@ -50,6 +50,9 @@ project "OpenGL"
         "_CRT_SECURE_NO_WARNINGS"
     }
 
+    filter { "system:windows" } 
+        postbuildcommands { "copy lib\\assimp-vc142-mt.dll build\\bin\\Debug-windows-x86_64\\OpenGL\\assimp-vc142-mt.dll" }
+
     filter { "configurations:Debug" }
         symbols "On"
         linkoptions { "-g" }
