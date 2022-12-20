@@ -1,6 +1,7 @@
 build/*
 OpenGL.make
 **/imgui.ini
+**/Makefile
 
 # Visual Studio files and folder
 .vs/
