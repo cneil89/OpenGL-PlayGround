@@ -53,6 +53,7 @@ int main()
     const GLFWvidmode* mode = glfwGetVideoMode(monitor);
     uint32_t screenWidth = mode->width;
     uint32_t screenHeight = mode->height;
+    bool wireFrameEnabled = false;
 
     std::cout << "Screen Size: " << screenWidth << "x"<< screenHeight << std::endl;
 
@@ -107,6 +108,11 @@ int main()
         while (!glfwWindowShouldClose(window))
         {
 
+            if (wireFrameEnabled)
+                glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+            else
+                glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
             // GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
             // GLCall(glClearColor(0.033f, 0.555f, 0.667f, 1.0f));
             GLCall(glClearColor(0.255f, 0.004f, 0.522f, 1.0f));
@@ -138,6 +144,7 @@ int main()
                 currentTest->OnImGuiRender();
                 ImGui::Separator();
                 ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+                ImGui::Checkbox("Wireframe", &wireFrameEnabled);
                 ImGui::End();
             }
 

@@ -1,5 +1,7 @@
 #pragma once
 
+#include "PlatformDetection.h"
+
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 #include <glm/gtx/norm.hpp>
@@ -34,3 +36,13 @@ const uint32_t SCR_HEIGHT = 680;
 // MAX Point Lights
 // NOTE: If changing this defines, makesure to change the max number define in shader.
 #define MAX_PLIGHT 6
+
+/// Debugbreak
+#if defined(OGLPLAYGROUND_PLATFORM_WINDOWS)
+    #define OGLPLAYGROUND_DEBUGBREAK() __debugbreak()
+#elif defined(OGLPLAYGROUND_PLATFORM_LINUX)
+    #include <signal.h>
+    #define OGLPLAYGROUND_DEBUGBREAK() raise(SIGTRAP)
+#else
+    #error "Platform doesn't support debug break yet!"
+#endif
