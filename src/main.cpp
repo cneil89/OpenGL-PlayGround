@@ -23,6 +23,7 @@ bool firstMouse = true;
 #include "tests/TestBlend.h"
 #include "tests/TestCulling.h"
 #include "tests/TestFramebuffer.h"
+#include "tests/TestCubemap.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -48,14 +49,12 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    // GLFWmonitor* monitor = glfwGetPrimaryMonitor();
     GLFWmonitor* monitor = glfwGetPrimaryMonitor();
     const GLFWvidmode* mode = glfwGetVideoMode(monitor);
     uint32_t screenWidth = mode->width;
     uint32_t screenHeight = mode->height;
     bool wireFrameEnabled = false;
 
-    std::cout << "Screen Size: " << screenWidth << "x"<< screenHeight << std::endl;
 
     window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, APP_NAME, NULL, NULL);
     if (!window)
@@ -69,8 +68,11 @@ int main()
     glfwSetCursorPosCallback(window, mouse_callback);
     glfwSetScrollCallback(window, scroll_callback);
 
-    std::cout << "OpenGL Version: " << glGetString(GL_VERSION) << std::endl;
-    std::cout << "ImGui  Version: " << ImGui::GetVersion() << std::endl;
+    std::cout << "GFX Card Manufacturer: " << glGetString(GL_VENDOR) << std::endl;
+    std::cout << "GFX Card:              " << glGetString(GL_RENDERER) << std::endl;
+    std::cout << "OpenGL Version:        " << glGetString(GL_VERSION) << std::endl;
+    std::cout << "ImGui  Version:        " << ImGui::GetVersion() << std::endl;
+    std::cout << "Screen Size:           " << screenWidth << "x" << screenHeight << std::endl;
 
     glfwSwapInterval(1);
 
@@ -90,8 +92,7 @@ int main()
 
         test::Test* currentTest = nullptr;
         test::TestMenu* testMenu = new test::TestMenu(currentTest);
-        // currentTest = testMenu
-        currentTest = new test::TestFramebuffer();
+        currentTest = new test::TestCubemap();
 
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");
         testMenu->RegisterTest<test::TestTexture2D>("2D Texture");
@@ -104,6 +105,7 @@ int main()
         testMenu->RegisterTest<test::TestBlend>("Blending");
         testMenu->RegisterTest<test::TestCulling>("Culling");
         testMenu->RegisterTest<test::TestFramebuffer>("Framebuffer");
+        testMenu->RegisterTest<test::TestCubemap>("Cubemap");
 
         while (!glfwWindowShouldClose(window))
         {
