@@ -2,6 +2,7 @@
 #include "Renderer.h"
 #include "VertexBufferLayout.h"
 #include "stb/stb_image.h"
+#include "imgui/imgui.h"
 
 namespace test
 {
@@ -187,7 +188,10 @@ namespace test
 
     void TestCubemap::OnImGuiRender()
     {
-
+        if(ImGui::RadioButton("Normal", m_ReflectionSelctor == 0))
+            m_ReflectionSelctor = 0;
+        if (ImGui::RadioButton("Reflection", m_ReflectionSelctor == 1))
+            m_ReflectionSelctor = 1;
     }
 
     void TestCubemap::LoadCubemap(std::vector<std::string> faces)

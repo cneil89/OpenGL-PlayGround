@@ -19,6 +19,7 @@ namespace test
         void OnImGuiRender() override;
     private:
         uint32_t m_CubemapTexture;
+        uint16_t m_ReflectionSelctor = 0;
         
         std::unique_ptr<Shader> m_CubeShader;
         std::unique_ptr<VertexArray> m_CubeVAO;

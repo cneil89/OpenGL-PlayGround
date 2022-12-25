@@ -55,7 +55,6 @@ int main()
     uint32_t screenHeight = mode->height;
     bool wireFrameEnabled = false;
 
-
     window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, APP_NAME, NULL, NULL);
     if (!window)
     {
@@ -225,6 +224,7 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
     }
     else
     {
+        firstMouse = true;
         glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
     }
 }
