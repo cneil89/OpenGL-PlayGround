@@ -8,11 +8,11 @@
 
 namespace test
 {
-    class TestCubemap : public Test
+    class TestEnvironmentMapping : public Test
     {
     public:
-        TestCubemap();
-        ~TestCubemap();
+        TestEnvironmentMapping();
+        ~TestEnvironmentMapping();
 
         void OnUpdate(float deltaTime) override;
         void OnRender(Camera& camera) override;
@@ -29,6 +29,5 @@ namespace test
         std::unique_ptr<Shader> m_SkyboxShader;
         std::unique_ptr<VertexArray> m_SkyBoxVAO;
         std::unique_ptr<VertexBuffer> m_SkyBoxVBO;
-
     };
 }

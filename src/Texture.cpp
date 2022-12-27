@@ -1,6 +1,40 @@
 #include "Texture.h"
 #include "stb/stb_image.h"
 
+
+uint32_t Texture::LoadCubemap(std::vector<std::string> faces)
+{
+    uint32_t tempTextureID;
+    GLCall(glGenTextures(1, &tempTextureID));
+    GLCall(glBindTexture(GL_TEXTURE_CUBE_MAP, tempTextureID));
+
+    stbi_set_flip_vertically_on_load(0);
+
+    int32_t width, height, nrChannels;
+    for (size_t i = 0; i < faces.size(); ++i)
+    {
+        unsigned char *data = stbi_load(faces[i].c_str(), &width, &height, &nrChannels, 0);
+        if (data)
+        {
+            GLCall(glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data));
+            stbi_image_free(data);
+        }
+        else
+        {
+            std::cout << "Cubemap tex failed to load at path: " << faces[i] << std::endl;
+            stbi_image_free(data);
+        }
+    }
+    GLCall(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR));
+    GLCall(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR));
+    GLCall(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE));
+    GLCall(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
+    GLCall(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE));
+
+
+    return tempTextureID;
+}
+
 Texture::Texture(const std::string& path, bool clamp, bool flip, bool alpha)
     : m_RendererID(0), m_FilePath(path), m_LocalBuffer(nullptr),
     m_Width(0), m_Height(0), m_BPP(0)

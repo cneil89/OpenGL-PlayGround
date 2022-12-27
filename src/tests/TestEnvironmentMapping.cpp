@@ -1,4 +1,4 @@
-#include "TestCubemap.h"
+#include "TestEnvironmentMapping.h"
 #include "Renderer.h"
 #include "VertexBufferLayout.h"
 #include "stb/stb_image.h"
@@ -6,54 +6,54 @@
 
 namespace test
 {
-    TestCubemap::TestCubemap()
-        : Test("Cubemap")
+    TestEnvironmentMapping::TestEnvironmentMapping()
+        : Test("Environment Mapping")
     {
         glEnable(GL_DEPTH_TEST);
         float cubeVertices[] = {
-            // positions          // texture Coords
-            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-             0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+            // positions          // normals
+            -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+             0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+             0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+             0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+            -0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
 
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+             0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+             0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+             0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+            -0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
+            -0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,
 
-            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+            -0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+            -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+            -0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,
+            -0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
+            -0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,
 
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+             0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+             0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+             0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+             0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,
+             0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
+             0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,
 
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+             0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
+             0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+             0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+            -0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,
+            -0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,
 
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-    };
+             0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+            -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,
+             0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+             0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+            -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
+            -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
+        };
         float skyboxVertices[] = {
             // positions          
             -1.0f,  1.0f, -1.0f,
@@ -119,12 +119,12 @@ namespace test
 
         m_CubemapTexture = m_SkyboxTextureDictionary["Skyscape"];
 
-        m_CubeShader = std::make_unique<Shader>("res/shaders/OGLBookDepthTesting.shader");
+        m_CubeShader = std::make_unique<Shader>("res/shaders/OGLBookSkyboxContainer.shader");
         m_CubeVAO = std::make_unique<VertexArray>();
-        m_CubeVBO = std::make_unique<VertexBuffer>(cubeVertices, 36 * 5 * sizeof(float));
+        m_CubeVBO = std::make_unique<VertexBuffer>(cubeVertices, 36 * 6 * sizeof(float));
         VertexBufferLayout cubeLayout;
         cubeLayout.Push<float>(3);
-        cubeLayout.Push<float>(2);
+        cubeLayout.Push<float>(3);
         m_CubeVAO->AddBuffer(*m_CubeVBO, cubeLayout);
         m_CubeTexture = std::make_unique<Texture>("res/textures/container.jpg");
         m_CubeTexture->Bind(0);
@@ -142,17 +142,17 @@ namespace test
         m_SkyboxShader->SetUniform1i("skybox", 0);
     }
 
-    TestCubemap::~TestCubemap()
+    TestEnvironmentMapping::~TestEnvironmentMapping()
     {
         glDisable(GL_DEPTH_TEST);
     }
 
-    void TestCubemap::OnUpdate(float deltaTime)
+    void TestEnvironmentMapping::OnUpdate(float deltaTime)
     {
 
     }
 
-    void TestCubemap::OnRender(Camera& camera)
+    void TestEnvironmentMapping::OnRender(Camera& camera)
     {
         glEnable(GL_DEPTH_TEST);
         glDepthFunc(GL_LESS);
@@ -170,6 +170,7 @@ namespace test
         m_CubeShader->SetUniformMat4f("view", view);
         m_CubeShader->SetUniformMat4f("projection", projection);
         m_CubeShader->SetUniform1i("texture1", 0);
+        m_CubeShader->SetUniformVec3f("cameraPos", camera.GetPosition());
         renderer.Draw(*m_CubeVAO, *m_CubeShader, 36);
 
         //skybox
@@ -184,9 +185,11 @@ namespace test
         renderer.Draw(*m_SkyBoxVAO, *m_SkyboxShader, 36);
         m_SkyBoxVAO->Unbind();
         glDepthFunc(GL_LESS);
+
+
     }
 
-    void TestCubemap::OnImGuiRender()
+    void TestEnvironmentMapping::OnImGuiRender()
     {
         for (auto &item : m_SkyboxTextureDictionary)
             if(ImGui::RadioButton(item.first.c_str(), m_CubemapTexture == item.second)) 

@@ -24,6 +24,7 @@ bool firstMouse = true;
 #include "tests/TestCulling.h"
 #include "tests/TestFramebuffer.h"
 #include "tests/TestCubemap.h"
+#include "tests/TestEnvironmentMapping.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -105,6 +106,7 @@ int main()
         testMenu->RegisterTest<test::TestCulling>("Culling");
         testMenu->RegisterTest<test::TestFramebuffer>("Framebuffer");
         testMenu->RegisterTest<test::TestCubemap>("Cubemap");
+        testMenu->RegisterTest<test::TestEnvironmentMapping>("Environment Mapping");
 
         while (!glfwWindowShouldClose(window))
         {

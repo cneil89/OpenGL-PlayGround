@@ -4,6 +4,8 @@
 
 class Texture
 {
+public:
+    static uint32_t LoadCubemap(std::vector<std::string> faces);
 private:
     uint32_t m_RendererID;
     std::string m_FilePath;
