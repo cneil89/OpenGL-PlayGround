@@ -8,7 +8,8 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
-namespace test {
+namespace test
+{
 
     TestCube3D::TestCube3D()
         : Test("3D Cube")
@@ -16,60 +17,59 @@ namespace test {
         glEnable(GL_DEPTH_TEST);
 
         float vertices[] = {
-            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
-             0.5f, -0.5f, -0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+            0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
 
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+            -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
 
-            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+            -0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+            -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
 
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
 
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            0.5f, -0.5f, -0.5f, 1.0f, 1.0f,
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
 
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f,
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f,
-            -0.5f,  0.5f,  0.5f,  0.0f, 0.0f,
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f
-        };
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+            -0.5f, 0.5f, 0.5f, 0.0f, 0.0f,
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f};
 
-        m_CubePositions.push_back(glm::vec3( 0.0f,  0.0f,  0.0f));
-        m_CubePositions.push_back(glm::vec3( 2.0f,  5.0f, -15.0f));
+        m_CubePositions.push_back(glm::vec3(0.0f, 0.0f, 0.0f));
+        m_CubePositions.push_back(glm::vec3(2.0f, 5.0f, -15.0f));
         m_CubePositions.push_back(glm::vec3(-1.5f, -2.2f, -2.5f));
         m_CubePositions.push_back(glm::vec3(-3.8f, -2.0f, -12.3f));
-        m_CubePositions.push_back(glm::vec3( 2.4f, -0.4f, -3.5f));
-        m_CubePositions.push_back(glm::vec3(-1.7f,  3.0f, -7.5f));
-        m_CubePositions.push_back(glm::vec3( 1.3f, -2.0f, -2.5f));
-        m_CubePositions.push_back(glm::vec3( 1.5f,  2.0f, -2.5f));
-        m_CubePositions.push_back(glm::vec3( 1.5f,  0.2f, -1.5f));
-        m_CubePositions.push_back(glm::vec3(-1.3f,  1.0f, -1.5f));
-        m_CubePositions.push_back(glm::vec3( 0.5f, -4.3f, -9.0f));
+        m_CubePositions.push_back(glm::vec3(2.4f, -0.4f, -3.5f));
+        m_CubePositions.push_back(glm::vec3(-1.7f, 3.0f, -7.5f));
+        m_CubePositions.push_back(glm::vec3(1.3f, -2.0f, -2.5f));
+        m_CubePositions.push_back(glm::vec3(1.5f, 2.0f, -2.5f));
+        m_CubePositions.push_back(glm::vec3(1.5f, 0.2f, -1.5f));
+        m_CubePositions.push_back(glm::vec3(-1.3f, 1.0f, -1.5f));
+        m_CubePositions.push_back(glm::vec3(0.5f, -4.3f, -9.0f));
 
         m_VAO = std::make_unique<VertexArray>();
         m_VertexBuffer = std::make_unique<VertexBuffer>(vertices, 36 * 5 * sizeof(float));
@@ -87,20 +87,18 @@ namespace test {
         m_Shader->Bind();
         m_Shader->SetUniform1i("texture1", 0);
         m_Shader->SetUniform1i("texture2", 1);
-
     }
 
-    TestCube3D::~TestCube3D () 
+    TestCube3D::~TestCube3D()
     {
         glDisable(GL_DEPTH_TEST);
     }
 
-    void TestCube3D::OnUpdate(float deltaTime) 
+    void TestCube3D::OnUpdate(float deltaTime)
     {
-
     }
 
-    void TestCube3D::OnRender(Camera& camera)
+    void TestCube3D::OnRender(Camera &camera)
     {
         // GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
         GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
@@ -110,15 +108,14 @@ namespace test {
         m_Shader->Bind();
 
         // glm::mat4 model         = glm::mat4(1.0f);
-        glm::mat4 view          = glm::mat4(1.0f);
-        glm::mat4 projection    = glm::mat4(1.0f);
+        glm::mat4 view = glm::mat4(1.0f);
+        glm::mat4 projection = glm::mat4(1.0f);
         // model = glm::rotate(model, (float)glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 2.0f, 0.0f));
         view = camera.GetViewMatrix();
         projection = glm::perspective(glm::radians(camera.GetZoom()), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         // m_Shader->SetUniformMat4f("model", model);
         m_Shader->SetUniformMat4f("view", view);
         m_Shader->SetUniformMat4f("projection", projection);
-
 
         m_VAO->Bind();
         for (uint32_t i = 0; i < m_CubePositions.size(); i++)
@@ -131,13 +128,11 @@ namespace test {
             model = glm::rotate(model, (float)glfwGetTime() * glm::radians(angle), glm::vec3(1.0f, 0.3f, 0.5f));
             m_Shader->SetUniformMat4f("model", model);
 
-
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
     }
 
     void TestCube3D::OnImGuiRender()
     {
-
     }
 }

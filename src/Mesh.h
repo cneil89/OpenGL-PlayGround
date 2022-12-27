@@ -21,12 +21,11 @@ struct Vertex
     glm::vec3 Tangent;
     // bitangent
     glm::vec3 Bitangent;
-    //bone indexes which will influence this vertex
+    // bone indexes which will influence this vertex
     int m_BoneIDs[MAX_BONE_INFLUENCE];
-    //weights from each bone
+    // weights from each bone
     float m_Weights[MAX_BONE_INFLUENCE];
 };
-
 
 // TODO: Repurpose to use the Texture class
 struct TextureStruct
@@ -39,15 +38,15 @@ struct TextureStruct
 class Mesh
 {
 public:
-    std::vector<Vertex>           vertices;
-    std::vector<uint32_t>         indices;
-    std::vector<TextureStruct>    textures;
+    std::vector<Vertex> vertices;
+    std::vector<uint32_t> indices;
+    std::vector<TextureStruct> textures;
 
     Mesh(std::vector<Vertex> verticies, std::vector<uint32_t> indicies, std::vector<TextureStruct> textures);
     void Draw(Shader &shader);
+
 private:
     uint32_t m_VAO, m_VBO, m_EBO;
 
     void setupMesh();
-
 };

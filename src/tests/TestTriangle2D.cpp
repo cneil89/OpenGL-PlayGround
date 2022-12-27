@@ -6,27 +6,27 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-namespace test {
+namespace test
+{
 
     TestTriangle2D::TestTriangle2D()
         : Test("Triange 2D"),
-            m_Proj(glm::ortho(0.0f, (float)SCR_WIDTH, 0.0f, (float)SCR_HEIGHT, -1.0f, 1.0f)),
-            m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))),
-            m_Translation(450, 340, 0)
+          m_Proj(glm::ortho(0.0f, (float)SCR_WIDTH, 0.0f, (float)SCR_HEIGHT, -1.0f, 1.0f)),
+          m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))),
+          m_Translation(450, 340, 0)
     {
         GLCall(glEnable(GL_BLEND));
         GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 
         float positions[] = {
             //   Positions            // Colors
-            -150.0f, -150.0f, 0.0f,   1.0f, 0.0f, 0.0f,    // Bottom Left
-             150.0f, -150.0f, 0.0f,   0.0f, 1.0f, 0.0f,    // Borrom Right 
-               0.0f,  150.0f, 0.0f,   0.0f, 0.0f, 1.0f     // Top Middle
+            -150.0f, -150.0f, 0.0f, 1.0f, 0.0f, 0.0f, // Bottom Left
+            150.0f, -150.0f, 0.0f, 0.0f, 1.0f, 0.0f,  // Borrom Right
+            0.0f, 150.0f, 0.0f, 0.0f, 0.0f, 1.0f      // Top Middle
         };
 
         uint32_t indicies[] = {
-            0, 1, 2
-        };
+            0, 1, 2};
 
         m_VAO = std::make_unique<VertexArray>();
 
@@ -38,22 +38,20 @@ namespace test {
         m_VAO->AddBuffer(*m_VertexBuffer, layout);
 
         m_IndexBuffer = std::make_unique<IndexBuffer>(indicies, 3);
-        
+
         m_Shader = std::make_unique<Shader>("res/shaders/FlatColor.Shader");
         m_Shader->Bind();
     }
 
     TestTriangle2D::~TestTriangle2D()
     {
-
     }
 
-    void TestTriangle2D::OnUpdate(float deltaTime) 
+    void TestTriangle2D::OnUpdate(float deltaTime)
     {
-
     }
 
-    void TestTriangle2D::OnRender(Camera& camera) 
+    void TestTriangle2D::OnRender(Camera &camera)
     {
         GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
         GLCall(glClear(GL_COLOR_BUFFER_BIT));
@@ -62,7 +60,7 @@ namespace test {
 
         glm::mat4 model = glm::translate(glm::mat4(1.0f), m_Translation);
         glm::mat4 mvp = m_Proj * m_View * model;
-        
+
         m_VAO->Bind();
         m_Shader->Bind();
         m_Shader->SetUniformMat4f("u_MVP", mvp);
@@ -70,8 +68,8 @@ namespace test {
         renderer.Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
     }
 
-    void TestTriangle2D::OnImGuiRender() 
+    void TestTriangle2D::OnImGuiRender()
     {
-        ImGui::SliderFloat2("Translation", &m_Translation.x, 0.0f, (float)SCR_WIDTH); 
+        ImGui::SliderFloat2("Translation", &m_Translation.x, 0.0f, (float)SCR_WIDTH);
     }
 }

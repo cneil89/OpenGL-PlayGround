@@ -8,7 +8,8 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
-namespace test {
+namespace test
+{
 
     TestPointLight3D::TestPointLight3D()
         : Test("Point Light 3D")
@@ -18,49 +19,48 @@ namespace test {
 
         float vertices[] = {
             // positions                // normals                 // texture coords
-            -0.5f, -0.5f, -0.5f,        0.0f,  0.0f, -1.0f,        0.0f,  0.0f,
-             0.5f, -0.5f, -0.5f,        0.0f,  0.0f, -1.0f,        1.0f,  0.0f,
-             0.5f,  0.5f, -0.5f,        0.0f,  0.0f, -1.0f,        1.0f,  1.0f,
-             0.5f,  0.5f, -0.5f,        0.0f,  0.0f, -1.0f,        1.0f,  1.0f,
-            -0.5f,  0.5f, -0.5f,        0.0f,  0.0f, -1.0f,        0.0f,  1.0f,
-            -0.5f, -0.5f, -0.5f,        0.0f,  0.0f, -1.0f,        0.0f,  0.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
+            0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 0.0f,
+            0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
+            0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 1.0f, 1.0f,
+            -0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f, 0.0f, 0.0f,
 
-            -0.5f, -0.5f,  0.5f,        0.0f,  0.0f,  1.0f,        0.0f,  0.0f,
-             0.5f, -0.5f,  0.5f,        0.0f,  0.0f,  1.0f,        1.0f,  0.0f,
-             0.5f,  0.5f,  0.5f,        0.0f,  0.0f,  1.0f,        1.0f,  1.0f,
-             0.5f,  0.5f,  0.5f,        0.0f,  0.0f,  1.0f,        1.0f,  1.0f,
-            -0.5f,  0.5f,  0.5f,        0.0f,  0.0f,  1.0f,        0.0f,  1.0f,
-            -0.5f, -0.5f,  0.5f,        0.0f,  0.0f,  1.0f,        0.0f,  0.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+            0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+            0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+            -0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 1.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
 
-            -0.5f,  0.5f,  0.5f,       -1.0f,  0.0f,  0.0f,        1.0f,  0.0f,
-            -0.5f,  0.5f, -0.5f,       -1.0f,  0.0f,  0.0f,        1.0f,  1.0f,
-            -0.5f, -0.5f, -0.5f,       -1.0f,  0.0f,  0.0f,        0.0f,  1.0f,
-            -0.5f, -0.5f, -0.5f,       -1.0f,  0.0f,  0.0f,        0.0f,  1.0f,
-            -0.5f, -0.5f,  0.5f,       -1.0f,  0.0f,  0.0f,        0.0f,  0.0f,
-            -0.5f,  0.5f,  0.5f,       -1.0f,  0.0f,  0.0f,        1.0f,  0.0f,
+            -0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+            -0.5f, 0.5f, -0.5f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+            -0.5f, -0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+            -0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
 
-             0.5f,  0.5f,  0.5f,        1.0f,  0.0f,  0.0f,        1.0f,  0.0f,
-             0.5f,  0.5f, -0.5f,        1.0f,  0.0f,  0.0f,        1.0f,  1.0f,
-             0.5f, -0.5f, -0.5f,        1.0f,  0.0f,  0.0f,        0.0f,  1.0f,
-             0.5f, -0.5f, -0.5f,        1.0f,  0.0f,  0.0f,        0.0f,  1.0f,
-             0.5f, -0.5f,  0.5f,        1.0f,  0.0f,  0.0f,        0.0f,  0.0f,
-             0.5f,  0.5f,  0.5f,        1.0f,  0.0f,  0.0f,        1.0f,  0.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+            0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 1.0f,
+            0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+            0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 1.0f,
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
 
-            -0.5f, -0.5f, -0.5f,        0.0f, -1.0f,  0.0f,        0.0f,  1.0f,
-             0.5f, -0.5f, -0.5f,        0.0f, -1.0f,  0.0f,        1.0f,  1.0f,
-             0.5f, -0.5f,  0.5f,        0.0f, -1.0f,  0.0f,        1.0f,  0.0f,
-             0.5f, -0.5f,  0.5f,        0.0f, -1.0f,  0.0f,        1.0f,  0.0f,
-            -0.5f, -0.5f,  0.5f,        0.0f, -1.0f,  0.0f,        0.0f,  0.0f,
-            -0.5f, -0.5f, -0.5f,        0.0f, -1.0f,  0.0f,        0.0f,  1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f,
+            0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f, 1.0f, 1.0f,
+            0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+            0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f, 0.0f, 0.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f, 0.0f, 1.0f,
 
-            -0.5f,  0.5f, -0.5f,        0.0f,  1.0f,  0.0f,        0.0f,  1.0f,
-             0.5f,  0.5f, -0.5f,        0.0f,  1.0f,  0.0f,        1.0f,  1.0f,
-             0.5f,  0.5f,  0.5f,        0.0f,  1.0f,  0.0f,        1.0f,  0.0f,
-             0.5f,  0.5f,  0.5f,        0.0f,  1.0f,  0.0f,        1.0f,  0.0f,
-            -0.5f,  0.5f,  0.5f,        0.0f,  1.0f,  0.0f,        0.0f,  0.0f,
-            -0.5f,  0.5f, -0.5f,        0.0f,  1.0f,  0.0f,        0.0f,  1.0f
-        };
-    
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+            0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
+            0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 1.0f, 0.0f,
+            -0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f, 0.0f, 1.0f};
+
         m_VAO = std::make_unique<VertexArray>();
         m_VertexBuffer = std::make_unique<VertexBuffer>(vertices, 36 * 8 * sizeof(float));
         VertexBufferLayout layout;
@@ -83,17 +83,16 @@ namespace test {
         m_Shader->SetUniform1i("material.specular", 1);
     }
 
-    TestPointLight3D::~TestPointLight3D () 
+    TestPointLight3D::~TestPointLight3D()
     {
         glDisable(GL_DEPTH_TEST);
     }
 
-    void TestPointLight3D::OnUpdate(float deltaTime) 
+    void TestPointLight3D::OnUpdate(float deltaTime)
     {
-
     }
 
-    void TestPointLight3D::OnRender(Camera& camera)
+    void TestPointLight3D::OnRender(Camera &camera)
     {
         GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f););
         GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
@@ -104,7 +103,7 @@ namespace test {
         m_Shader->Bind();
         m_Shader->SetUniformVec3f("viewPos", camera.GetPosition());
         m_Shader->SetUniform1f("material.shininess", 32.0f);
-        
+
         m_Shader->SetUniformVec3f("dirLight.direction", -0.2f, -1.0f, -0.3f);
         m_Shader->SetUniformVec3f("dirLight.ambient", 0.05f, 0.05f, 0.05f);
         m_Shader->SetUniformVec3f("dirLight.diffuse", 0.4f, 0.4f, 0.4f);
@@ -115,9 +114,9 @@ namespace test {
         for (uint32_t i = 0; i < m_LightPositions.size(); i++)
             SetPointLightProps(i);
 
-        glm::mat4 view          = glm::mat4(1.0f);
-        glm::mat4 projection    = glm::mat4(1.0f);
-        view = camera.GetViewMatrix(); 
+        glm::mat4 view = glm::mat4(1.0f);
+        glm::mat4 projection = glm::mat4(1.0f);
+        view = camera.GetViewMatrix();
         projection = glm::perspective(glm::radians(camera.GetZoom()), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
         m_Shader->SetUniformMat4f("view", view);
         m_Shader->SetUniformMat4f("projection", projection);
@@ -156,7 +155,7 @@ namespace test {
         ImGui::SameLine();
         if (ImGui::Button("Add light") && m_LightPositions.size() < MAX_PLIGHT)
             m_LightPositions.push_back(glm::vec3{0.0f, 0.0f, 0.0f});
-        
+
         for (uint32_t i = 0; i < m_LightPositions.size() && i < MAX_PLIGHT; i++)
         {
             ImGui::PushID(i);
@@ -211,13 +210,13 @@ namespace test {
             pointLight += std::to_string(index);
             pointLight += "]";
 
-            m_Shader->SetUniformVec3f(pointLight + ".position",  m_LightPositions[index]);
-            m_Shader->SetUniformVec3f(pointLight + ".ambient",   0.2f, 0.2f, 0.2f);
-            m_Shader->SetUniformVec3f(pointLight + ".diffuse",   0.5f, 0.5f, 0.5f);
-            m_Shader->SetUniformVec3f(pointLight + ".specular",  1.0f, 1.0f, 1.0f);
-            m_Shader->SetUniform1f   (pointLight + ".constant",  1.0f);
-            m_Shader->SetUniform1f   (pointLight + ".linear",    0.09f);
-            m_Shader->SetUniform1f   (pointLight + ".quadratic", 0.032f);
+            m_Shader->SetUniformVec3f(pointLight + ".position", m_LightPositions[index]);
+            m_Shader->SetUniformVec3f(pointLight + ".ambient", 0.2f, 0.2f, 0.2f);
+            m_Shader->SetUniformVec3f(pointLight + ".diffuse", 0.5f, 0.5f, 0.5f);
+            m_Shader->SetUniformVec3f(pointLight + ".specular", 1.0f, 1.0f, 1.0f);
+            m_Shader->SetUniform1f(pointLight + ".constant", 1.0f);
+            m_Shader->SetUniform1f(pointLight + ".linear", 0.09f);
+            m_Shader->SetUniform1f(pointLight + ".quadratic", 0.032f);
         }
     }
 

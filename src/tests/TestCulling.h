@@ -7,7 +7,8 @@
 #include "VertexBufferLayout.h"
 #include "Texture.h"
 
-namespace test {
+namespace test
+{
 
     class TestCulling : public Test
     {
@@ -16,8 +17,9 @@ namespace test {
         ~TestCulling();
 
         void OnUpdate(float deltaTime) override;
-        void OnRender(Camera& camera) override;
+        void OnRender(Camera &camera) override;
         void OnImGuiRender() override;
+
     private:
         std::unordered_map<std::string, std::string> m_ShaderMap;
         std::string m_ActiveShader;
@@ -26,7 +28,5 @@ namespace test {
         std::unique_ptr<VertexArray> m_CubeVAO;
         std::unique_ptr<VertexBuffer> m_CubeVBO;
         std::unique_ptr<Texture> m_CubeTexture;
-        
     };
 }
-

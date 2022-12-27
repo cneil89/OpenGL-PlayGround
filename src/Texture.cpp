@@ -1,7 +1,6 @@
 #include "Texture.h"
 #include "stb/stb_image.h"
 
-
 uint32_t Texture::LoadCubemap(std::vector<std::string> faces)
 {
     uint32_t tempTextureID;
@@ -31,13 +30,12 @@ uint32_t Texture::LoadCubemap(std::vector<std::string> faces)
     GLCall(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE));
     GLCall(glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE));
 
-
     return tempTextureID;
 }
 
-Texture::Texture(const std::string& path, bool clamp, bool flip, bool alpha)
+Texture::Texture(const std::string &path, bool clamp, bool flip, bool alpha)
     : m_RendererID(0), m_FilePath(path), m_LocalBuffer(nullptr),
-    m_Width(0), m_Height(0), m_BPP(0)
+      m_Width(0), m_Height(0), m_BPP(0)
 {
     stbi_set_flip_vertically_on_load(1);
     if (!flip)

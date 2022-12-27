@@ -1,8 +1,7 @@
 #include "Camera.h"
 
-
 // constructor with vectors
-Camera::Camera(glm::vec3 position, glm::vec3 up , float yaw, float pitch)
+Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch)
     : m_Front(glm::vec3(0.0f, 0.0f, -1.0f)), m_MovementSpeed(SPEED), m_MouseSensitivity(SENSITIVITY), m_Zoom(ZOOM)
 {
     m_Position = position;
@@ -30,8 +29,8 @@ glm::mat4 Camera::GetViewMatrix()
     return glm::lookAt(m_Position, m_Position + m_Front, m_Up);
 }
 
-// Processes input received from any keyboard-like input system.  
-// Accepts input parameter in the form of camera defined ENUM, 
+// Processes input received from any keyboard-like input system.
+// Accepts input parameter in the form of camera defined ENUM,
 // to abstract it from windowing systems.
 void Camera::ProcessKeyboard(Camera_Movement direction, float deltaTime)
 {
@@ -59,7 +58,7 @@ void Camera::ProcessMouseMovement(float xoffset, float yoffset, GLboolean constr
 
     m_Yaw += xoffset;
     m_Pitch += yoffset;
-    
+
     // make sure that when pitch is out of bounds, screen doesn't get flipped
     if (constrainPitch)
     {
@@ -105,5 +104,5 @@ void Camera::updateCameraVectors()
 
     // also recalculate the Right and Up vector
     m_Right = glm::normalize(glm::cross(m_Front, m_WorldUp));
-    m_Up    = glm::normalize(glm::cross(m_Right, m_Front));
+    m_Up = glm::normalize(glm::cross(m_Right, m_Front));
 }

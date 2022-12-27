@@ -6,25 +6,30 @@
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp"
 
-namespace test {
+namespace test
+{
 
     TestTexture2D::TestTexture2D()
         : Test("Texture 2D"),
-            m_Proj(glm::ortho(0.0f, (float)SCR_WIDTH, 0.0f, (float)SCR_HEIGHT, -1.0f, 1.0f)),
-            m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))),
-            m_TranslationA(200, 200, 0), m_TranslationB(400, 200, 0)
+          m_Proj(glm::ortho(0.0f, (float)SCR_WIDTH, 0.0f, (float)SCR_HEIGHT, -1.0f, 1.0f)),
+          m_View(glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0))),
+          m_TranslationA(200, 200, 0), m_TranslationB(400, 200, 0)
     {
 
         float positions[] = {
             -150.0f, -150.0f, 0.0f, 0.0f, // 0
-             150.0f, -150.0f, 1.0f, 0.0f, // 1
-             150.0f,  150.0f, 1.0f, 1.0f, // 2
-            -150.0f,  150.0f, 0.0f, 1.0f  // 3
+            150.0f, -150.0f, 1.0f, 0.0f,  // 1
+            150.0f, 150.0f, 1.0f, 1.0f,   // 2
+            -150.0f, 150.0f, 0.0f, 1.0f   // 3
         };
 
         uint32_t indices[] = {
-            0, 1, 2,
-            2, 3, 0,
+            0,
+            1,
+            2,
+            2,
+            3,
+            0,
         };
 
         GLCall(glEnable(GL_BLEND));
@@ -56,7 +61,7 @@ namespace test {
     {
     }
 
-    void TestTexture2D::OnRender(Camera& camera)
+    void TestTexture2D::OnRender(Camera &camera)
     {
         GLCall(glClearColor(0.0f, 0.0f, 0.0f, 1.0f));
         GLCall(glClear(GL_COLOR_BUFFER_BIT));
@@ -64,30 +69,30 @@ namespace test {
         Renderer renderer;
 
         m_Texture->Bind();
-     
-        {    
+
+        {
             glm::mat4 model = glm::translate(glm::mat4(1.0f), m_TranslationA);
             glm::mat4 mvp = m_Proj * m_View * model;
-            
+
             m_Shader->Bind();
             m_Shader->SetUniformMat4f("u_MVP", mvp);
-            
+
             renderer.Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
         }
-        {    
+        {
             glm::mat4 model = glm::translate(glm::mat4(1.0f), m_TranslationB);
             glm::mat4 mvp = m_Proj * m_View * model;
-            
+
             m_Shader->Bind();
             m_Shader->SetUniformMat4f("u_MVP", mvp);
-            
+
             renderer.Draw(*m_VAO, *m_IndexBuffer, *m_Shader);
         }
     }
 
     void TestTexture2D::OnImGuiRender()
     {
-        ImGui::SliderFloat2("Translation A", &m_TranslationA.x, 0.0f, (float)SCR_WIDTH);  
-        ImGui::SliderFloat2("Translation B", &m_TranslationB.x, 0.0f, (float)SCR_WIDTH);   
+        ImGui::SliderFloat2("Translation A", &m_TranslationA.x, 0.0f, (float)SCR_WIDTH);
+        ImGui::SliderFloat2("Translation B", &m_TranslationB.x, 0.0f, (float)SCR_WIDTH);
     }
 }

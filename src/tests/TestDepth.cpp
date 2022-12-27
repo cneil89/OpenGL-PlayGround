@@ -1,7 +1,8 @@
 #include "TestDepth.h"
 #include "imgui/imgui.h"
 
-namespace test {
+namespace test
+{
 
     TestDepth::TestDepth()
         : Test("Depth")
@@ -12,65 +13,63 @@ namespace test {
 
         float cubeVertices[] = {
             // positions             // texture Coords
-            -0.5f, -0.5f, -0.5f,     0.0f, 0.0f,
-             0.5f, -0.5f, -0.5f,     1.0f, 0.0f,
-             0.5f,  0.5f, -0.5f,     1.0f, 1.0f,
-             0.5f,  0.5f, -0.5f,     1.0f, 1.0f,
-            -0.5f,  0.5f, -0.5f,     0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,     0.0f, 0.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+            0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
 
-            -0.5f, -0.5f,  0.5f,     0.0f, 0.0f,
-             0.5f, -0.5f,  0.5f,     1.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,     1.0f, 1.0f,
-             0.5f,  0.5f,  0.5f,     1.0f, 1.0f,
-            -0.5f,  0.5f,  0.5f,     0.0f, 1.0f,
-            -0.5f, -0.5f,  0.5f,     0.0f, 0.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+            -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
 
-            -0.5f,  0.5f,  0.5f,     1.0f, 0.0f,
-            -0.5f,  0.5f, -0.5f,     1.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,     0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,     0.0f, 1.0f,
-            -0.5f, -0.5f,  0.5f,     0.0f, 0.0f,
-            -0.5f,  0.5f,  0.5f,     1.0f, 0.0f,
+            -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+            -0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+            -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
 
-             0.5f,  0.5f,  0.5f,     1.0f, 0.0f,
-             0.5f,  0.5f, -0.5f,     1.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,     0.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,     0.0f, 1.0f,
-             0.5f, -0.5f,  0.5f,     0.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,     1.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
 
-            -0.5f, -0.5f, -0.5f,     0.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,     1.0f, 1.0f,
-             0.5f, -0.5f,  0.5f,     1.0f, 0.0f,
-             0.5f, -0.5f,  0.5f,     1.0f, 0.0f,
-            -0.5f, -0.5f,  0.5f,     0.0f, 0.0f,
-            -0.5f, -0.5f, -0.5f,     0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            0.5f, -0.5f, -0.5f, 1.0f, 1.0f,
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
 
-            -0.5f,  0.5f, -0.5f,     0.0f, 1.0f,
-             0.5f,  0.5f, -0.5f,     1.0f, 1.0f,
-             0.5f,  0.5f,  0.5f,     1.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,     1.0f, 0.0f,
-            -0.5f,  0.5f,  0.5f,     0.0f, 0.0f,
-            -0.5f,  0.5f, -0.5f,     0.0f, 1.0f
-        };
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+            -0.5f, 0.5f, 0.5f, 0.0f, 0.0f,
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f};
         float planeVertices[] = {
-             // positions             // texture Coords (note we set these higher than 1 (together with GL_REPEAT as texture wrapping mode). this will cause the floor texture to repeat)
-             5.0f, -0.5f,  5.0f,     2.0f, 0.0f,
-            -5.0f, -0.5f,  5.0f,     0.0f, 0.0f,
-            -5.0f, -0.5f, -5.0f,     0.0f, 2.0f,
+            // positions             // texture Coords (note we set these higher than 1 (together with GL_REPEAT as texture wrapping mode). this will cause the floor texture to repeat)
+            5.0f, -0.5f, 5.0f, 2.0f, 0.0f,
+            -5.0f, -0.5f, 5.0f, 0.0f, 0.0f,
+            -5.0f, -0.5f, -5.0f, 0.0f, 2.0f,
 
-             5.0f, -0.5f,  5.0f,     2.0f, 0.0f,
-            -5.0f, -0.5f, -5.0f,     0.0f, 2.0f,
-             5.0f, -0.5f, -5.0f,     2.0f, 2.0f								
-        };
+            5.0f, -0.5f, 5.0f, 2.0f, 0.0f,
+            -5.0f, -0.5f, -5.0f, 0.0f, 2.0f,
+            5.0f, -0.5f, -5.0f, 2.0f, 2.0f};
         m_ShaderMap["Texture"] = "res/shaders/OGLBookDepthTesting.shader";
         m_ShaderMap["Depth Test"] = "res/shaders/OGLBookDepthTesting2.shader";
 
         m_ActiveShader = m_ShaderMap["Texture"];
         m_Shader = std::make_unique<Shader>(m_ActiveShader);
-        
-        //CUBE
+
+        // CUBE
         m_CubeVAO = std::make_unique<VertexArray>();
         m_CubeVBO = std::make_unique<VertexBuffer>(cubeVertices, 36 * 5 * sizeof(float));
         VertexBufferLayout CubeLayout;
@@ -80,7 +79,7 @@ namespace test {
         m_CubeTexture = std::make_unique<Texture>("res/textures/marble.jpg");
         m_CubeTexture->Bind(0);
 
-        //Plane
+        // Plane
         m_PlaneVAO = std::make_unique<VertexArray>();
         m_PlaneVBO = std::make_unique<VertexBuffer>(planeVertices, 6 * 5 * sizeof(float));
         VertexBufferLayout PlaneLayout;
@@ -89,7 +88,6 @@ namespace test {
         m_PlaneVAO->AddBuffer(*m_PlaneVBO, PlaneLayout);
         m_PlaneTexture = std::make_unique<Texture>("res/textures/metal.png");
         m_PlaneTexture->Bind(1);
-
     }
 
     TestDepth::~TestDepth()
@@ -97,12 +95,11 @@ namespace test {
         glDisable(GL_DEPTH_TEST);
     }
 
-    void TestDepth::OnUpdate(float deltaTime) 
+    void TestDepth::OnUpdate(float deltaTime)
     {
-
     }
 
-    void TestDepth::OnRender(Camera& camera) 
+    void TestDepth::OnRender(Camera &camera)
     {
         glClearColor(0.8f, 0.8f, 0.8f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -128,13 +125,13 @@ namespace test {
         m_PlaneVAO->Bind();
         m_Shader->SetUniform1i("texture1", 1);
         m_Shader->SetUniformMat4f("model", glm::mat4(1.0f));
-        glDrawArrays(GL_TRIANGLES, 0 ,36);
+        glDrawArrays(GL_TRIANGLES, 0, 36);
     }
 
-    void TestDepth::OnImGuiRender() 
+    void TestDepth::OnImGuiRender()
     {
         for (auto &item : m_ShaderMap)
-            if(ImGui::RadioButton(item.first.c_str(), m_ActiveShader == item.second)) 
+            if (ImGui::RadioButton(item.first.c_str(), m_ActiveShader == item.second))
             {
                 m_ActiveShader = item.second;
                 m_Shader = std::make_unique<Shader>(m_ActiveShader);

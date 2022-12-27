@@ -2,7 +2,8 @@
 
 #include "imgui/imgui.h"
 
-namespace test {
+namespace test
+{
 
     TestCulling::TestCulling()
         : Test("Culling")
@@ -14,67 +15,67 @@ namespace test {
         glCullFace(GL_BACK);
         glFrontFace(GL_CW);
 
-    /*
-        Remember: to specify vertices in a counter-clockwise winding order you need to visualize the triangle
-        as if you're in front of the triangle and from that point of view, is where you set their order.
-        
-        To define the order of a triangle on the right side of the cube for example, you'd imagine yourself looking
-        straight at the right side of the cube, and then visualize the triangle and make sure their order is specified
-        in a counter-clockwise order. This takes some practice, but try visualizing this yourself and see that this
-        is correct.
-    */
+        /*
+            Remember: to specify vertices in a counter-clockwise winding order you need to visualize the triangle
+            as if you're in front of the triangle and from that point of view, is where you set their order.
 
-    float cubeVertices[] = {
-        // Back face
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // Bottom-left
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-         0.5f, -0.5f, -0.5f,  1.0f, 0.0f, // bottom-right         
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // bottom-left
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-        // Front face
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
-         0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
-        -0.5f,  0.5f,  0.5f,  0.0f, 1.0f, // top-left
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
-        // Left face
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
-        -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-left
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
-        -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
-        // Right face
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right         
-         0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
-         0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left     
-        // Bottom face
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
-         0.5f, -0.5f, -0.5f,  1.0f, 1.0f, // top-left
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
-         0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
-        -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
-        -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
-        // Top face
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-         0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right     
-         0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-        -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-        -0.5f,  0.5f,  0.5f,  0.0f, 0.0f  // bottom-left        
-    };
+            To define the order of a triangle on the right side of the cube for example, you'd imagine yourself looking
+            straight at the right side of the cube, and then visualize the triangle and make sure their order is specified
+            in a counter-clockwise order. This takes some practice, but try visualizing this yourself and see that this
+            is correct.
+        */
+
+        float cubeVertices[] = {
+            // Back face
+            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, // Bottom-left
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,   // top-right
+            0.5f, -0.5f, -0.5f, 1.0f, 0.0f,  // bottom-right
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,   // top-right
+            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, // bottom-left
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,  // top-left
+            // Front face
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, // bottom-left
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,  // bottom-right
+            0.5f, 0.5f, 0.5f, 1.0f, 1.0f,   // top-right
+            0.5f, 0.5f, 0.5f, 1.0f, 1.0f,   // top-right
+            -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,  // top-left
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, // bottom-left
+            // Left face
+            -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,   // top-right
+            -0.5f, 0.5f, -0.5f, 1.0f, 1.0f,  // top-left
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, // bottom-left
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, // bottom-left
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // bottom-right
+            -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,   // top-right
+                                             // Right face
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,    // top-left
+            0.5f, -0.5f, -0.5f, 0.0f, 1.0f,  // bottom-right
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,   // top-right
+            0.5f, -0.5f, -0.5f, 0.0f, 1.0f,  // bottom-right
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,    // top-left
+            0.5f, -0.5f, 0.5f, 0.0f, 0.0f,   // bottom-left
+            // Bottom face
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, // top-right
+            0.5f, -0.5f, -0.5f, 1.0f, 1.0f,  // top-left
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,   // bottom-left
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,   // bottom-left
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // bottom-right
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, // top-right
+            // Top face
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, // top-left
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,   // bottom-right
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,  // top-right
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,   // bottom-right
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, // top-left
+            -0.5f, 0.5f, 0.5f, 0.0f, 0.0f   // bottom-left
+        };
 
         m_ShaderMap["Blending"] = "res/shaders/OGLBookBlending.shader";
 
         m_ActiveShader = m_ShaderMap["Blending"];
         m_Shader = std::make_unique<Shader>(m_ActiveShader);
-        
-        //CUBE
+
+        // CUBE
         m_CubeVAO = std::make_unique<VertexArray>();
         m_CubeVBO = std::make_unique<VertexBuffer>(cubeVertices, 36 * 5 * sizeof(float));
         VertexBufferLayout CubeLayout;
@@ -83,7 +84,6 @@ namespace test {
         m_CubeVAO->AddBuffer(*m_CubeVBO, CubeLayout);
         m_CubeTexture = std::make_unique<Texture>("res/textures/brickwall.jpg");
         m_CubeTexture->Bind(0);
-
     }
 
     TestCulling::~TestCulling()
@@ -92,12 +92,11 @@ namespace test {
         glDisable(GL_DEPTH_TEST);
     }
 
-    void TestCulling::OnUpdate(float deltaTime) 
+    void TestCulling::OnUpdate(float deltaTime)
     {
-
     }
 
-    void TestCulling::OnRender(Camera& camera) 
+    void TestCulling::OnRender(Camera &camera)
     {
         glClearColor(0.255f, 0.004f, 0.522f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -119,7 +118,7 @@ namespace test {
         glDrawArrays(GL_TRIANGLES, 0, 36);
     }
 
-    void TestCulling::OnImGuiRender() 
+    void TestCulling::OnImGuiRender()
     {
     }
 }

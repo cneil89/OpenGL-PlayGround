@@ -6,7 +6,8 @@
 #include "VertexBufferLayout.h"
 #include "Texture.h"
 
-namespace test {
+namespace test
+{
 
     class TestCube3D : public Test
     {
@@ -15,8 +16,9 @@ namespace test {
         ~TestCube3D();
 
         void OnUpdate(float deltaTime) override;
-        void OnRender(Camera& camera) override;
+        void OnRender(Camera &camera) override;
         void OnImGuiRender() override;
+
     private:
         std::unique_ptr<VertexArray> m_VAO;
         std::unique_ptr<VertexBuffer> m_VertexBuffer;

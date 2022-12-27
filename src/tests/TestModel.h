@@ -4,7 +4,8 @@
 #include "defines.h"
 #include "Model.h"
 
-namespace test {
+namespace test
+{
 
     class TestModel : public Test
     {
@@ -13,8 +14,9 @@ namespace test {
         ~TestModel();
 
         void OnUpdate(float deltaTime) override;
-        void OnRender(Camera& camera) override;
+        void OnRender(Camera &camera) override;
         void OnImGuiRender() override;
+
     private:
         void SetPointLightProps(uint32_t index);
 
@@ -27,6 +29,5 @@ namespace test {
         std::unique_ptr<Shader> m_Shader;
         std::unique_ptr<Shader> m_LightCubeShader;
         Model m_Model;
-
     };
 }

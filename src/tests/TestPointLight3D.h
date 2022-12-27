@@ -6,7 +6,8 @@
 #include "VertexBufferLayout.h"
 #include "Texture.h"
 
-namespace test {
+namespace test
+{
 
     class TestPointLight3D : public Test
     {
@@ -15,16 +16,17 @@ namespace test {
         ~TestPointLight3D();
 
         void OnUpdate(float deltaTime) override;
-        void OnRender(Camera& camera) override;
+        void OnRender(Camera &camera) override;
         void OnImGuiRender() override;
 
     private:
         void GenerateCube();
         float randomNum(float min, float max);
-        
+
         // TODO: Part out into its own class to be used by whole applicaiton
         // Should likely pass in shader reference/pointer as well a predefined struct(?)
         void SetPointLightProps(uint32_t index);
+
     private:
         std::unique_ptr<VertexArray> m_VAO;
         std::unique_ptr<VertexArray> m_LightVAO;

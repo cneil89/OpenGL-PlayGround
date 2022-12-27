@@ -26,12 +26,12 @@ bool firstMouse = true;
 #include "tests/TestCubemap.h"
 #include "tests/TestEnvironmentMapping.h"
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height);
-void processInput(GLFWwindow* window);
-void mouse_callback(GLFWwindow* window, double xposIn, double yposIn);
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+void framebuffer_size_callback(GLFWwindow *window, int width, int height);
+void processInput(GLFWwindow *window);
+void mouse_callback(GLFWwindow *window, double xposIn, double yposIn);
+void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
 
-const char* APP_NAME = "OpenGL Tutorial";
+const char *APP_NAME = "OpenGL Tutorial";
 
 // Timing
 float deltaTime = 0.0f;
@@ -39,7 +39,7 @@ float lastFrame = 0.0f;
 
 int main()
 {
-    GLFWwindow* window;
+    GLFWwindow *window;
     if (!glfwInit())
     {
         std::cout << "error" << std::endl;
@@ -50,8 +50,8 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 5);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    GLFWmonitor* monitor = glfwGetPrimaryMonitor();
-    const GLFWvidmode* mode = glfwGetVideoMode(monitor);
+    GLFWmonitor *monitor = glfwGetPrimaryMonitor();
+    const GLFWvidmode *mode = glfwGetVideoMode(monitor);
     uint32_t screenWidth = mode->width;
     uint32_t screenHeight = mode->height;
     bool wireFrameEnabled = false;
@@ -90,8 +90,8 @@ int main()
         ImGui_ImplGlfwGL3_Init(window, true);
         ImGui::StyleColorsDark();
 
-        test::Test* currentTest = nullptr;
-        test::TestMenu* testMenu = new test::TestMenu(currentTest);
+        test::Test *currentTest = nullptr;
+        test::TestMenu *testMenu = new test::TestMenu(currentTest);
         currentTest = new test::TestCubemap();
 
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");
@@ -121,7 +121,7 @@ int main()
             GLCall(glClearColor(0.255f, 0.004f, 0.522f, 1.0f));
             renderer.Clear();
             processInput(window);
-            
+
             float currentFrame = static_cast<float>(glfwGetTime());
             deltaTime = currentFrame - lastFrame;
             lastFrame = currentFrame;
@@ -134,14 +134,14 @@ int main()
                 ImGui::Begin(currentTest->getTestName().c_str());
                 if (currentTest != testMenu)
                 {
-                    if(ImGui::Button("<-"))
+                    if (ImGui::Button("<-"))
                     {
                         delete currentTest;
                         currentTest = testMenu;
                         camera.Reset();
                     }
                     ImGui::SameLine();
-                    if(ImGui::Button("Reset Camera"))
+                    if (ImGui::Button("Reset Camera"))
                         camera.Reset();
                 }
                 currentTest->OnImGuiRender();
@@ -172,10 +172,10 @@ int main()
     return 0;
 }
 
-void processInput(GLFWwindow* window)
+void processInput(GLFWwindow *window)
 {
     // If escape is press window will close.
-    if(glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
 
     float cameraSpeed = static_cast<float>(2.5 * deltaTime);
@@ -193,15 +193,15 @@ void processInput(GLFWwindow* window)
         camera.ProcessKeyboard(DOWN, deltaTime);
 }
 
-void framebuffer_size_callback(GLFWwindow* window, int width, int height)
+void framebuffer_size_callback(GLFWwindow *window, int width, int height)
 {
-    // Make sure the viewport matches the new window dimensions; note that width and 
+    // Make sure the viewport matches the new window dimensions; note that width and
     // height will be significantly larger than specified on retina displays.
 
     glViewport(0, 0, width, height);
 }
 
-void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
+void mouse_callback(GLFWwindow *window, double xposIn, double yposIn)
 {
     if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_2) == GLFW_PRESS)
     {
@@ -231,7 +231,7 @@ void mouse_callback(GLFWwindow* window, double xposIn, double yposIn)
     }
 }
 
-void scroll_callback(GLFWwindow* window, double xoffset, double yoffset)
+void scroll_callback(GLFWwindow *window, double xoffset, double yoffset)
 {
     camera.ProcessMouseScroll(static_cast<float>(yoffset));
 }

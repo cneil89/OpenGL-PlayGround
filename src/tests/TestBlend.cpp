@@ -2,7 +2,8 @@
 
 #include "imgui/imgui.h"
 
-namespace test {
+namespace test
+{
 
     TestBlend::TestBlend()
         : Test("Blending")
@@ -15,64 +16,62 @@ namespace test {
 
         float cubeVertices[] = {
             // positions             // texture Coords
-            -0.5f, -0.5f, -0.5f,     0.0f, 0.0f,
-             0.5f, -0.5f, -0.5f,     1.0f, 0.0f,
-             0.5f,  0.5f, -0.5f,     1.0f, 1.0f,
-             0.5f,  0.5f, -0.5f,     1.0f, 1.0f,
-            -0.5f,  0.5f, -0.5f,     0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,     0.0f, 0.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+            0.5f, -0.5f, -0.5f, 1.0f, 0.0f,
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
 
-            -0.5f, -0.5f,  0.5f,     0.0f, 0.0f,
-             0.5f, -0.5f,  0.5f,     1.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,     1.0f, 1.0f,
-             0.5f,  0.5f,  0.5f,     1.0f, 1.0f,
-            -0.5f,  0.5f,  0.5f,     0.0f, 1.0f,
-            -0.5f, -0.5f,  0.5f,     0.0f, 0.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 1.0f,
+            -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
 
-            -0.5f,  0.5f,  0.5f,     1.0f, 0.0f,
-            -0.5f,  0.5f, -0.5f,     1.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,     0.0f, 1.0f,
-            -0.5f, -0.5f, -0.5f,     0.0f, 1.0f,
-            -0.5f, -0.5f,  0.5f,     0.0f, 0.0f,
-            -0.5f,  0.5f,  0.5f,     1.0f, 0.0f,
+            -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+            -0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+            -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
 
-             0.5f,  0.5f,  0.5f,     1.0f, 0.0f,
-             0.5f,  0.5f, -0.5f,     1.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,     0.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,     0.0f, 1.0f,
-             0.5f, -0.5f,  0.5f,     0.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,     1.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
 
-            -0.5f, -0.5f, -0.5f,     0.0f, 1.0f,
-             0.5f, -0.5f, -0.5f,     1.0f, 1.0f,
-             0.5f, -0.5f,  0.5f,     1.0f, 0.0f,
-             0.5f, -0.5f,  0.5f,     1.0f, 0.0f,
-            -0.5f, -0.5f,  0.5f,     0.0f, 0.0f,
-            -0.5f, -0.5f, -0.5f,     0.0f, 1.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
+            0.5f, -0.5f, -0.5f, 1.0f, 1.0f,
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f,
 
-            -0.5f,  0.5f, -0.5f,     0.0f, 1.0f,
-             0.5f,  0.5f, -0.5f,     1.0f, 1.0f,
-             0.5f,  0.5f,  0.5f,     1.0f, 0.0f,
-             0.5f,  0.5f,  0.5f,     1.0f, 0.0f,
-            -0.5f,  0.5f,  0.5f,     0.0f, 0.0f,
-            -0.5f,  0.5f, -0.5f,     0.0f, 1.0f
-        };
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,
+            -0.5f, 0.5f, 0.5f, 0.0f, 0.0f,
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f};
         float planeVertices[] = {
-             // positions             // texture Coords (note we set these higher than 1 (together with GL_REPEAT as texture wrapping mode). this will cause the floor texture to repeat)
-             5.0f, -0.5f,  5.0f,     2.0f, 0.0f,
-            -5.0f, -0.5f,  5.0f,     0.0f, 0.0f,
-            -5.0f, -0.5f, -5.0f,     0.0f, 2.0f,
+            // positions             // texture Coords (note we set these higher than 1 (together with GL_REPEAT as texture wrapping mode). this will cause the floor texture to repeat)
+            5.0f, -0.5f, 5.0f, 2.0f, 0.0f,
+            -5.0f, -0.5f, 5.0f, 0.0f, 0.0f,
+            -5.0f, -0.5f, -5.0f, 0.0f, 2.0f,
 
-             5.0f, -0.5f,  5.0f,     2.0f, 0.0f,
-            -5.0f, -0.5f, -5.0f,     0.0f, 2.0f,
-             5.0f, -0.5f, -5.0f,     2.0f, 2.0f								
-        };
+            5.0f, -0.5f, 5.0f, 2.0f, 0.0f,
+            -5.0f, -0.5f, -5.0f, 0.0f, 2.0f,
+            5.0f, -0.5f, -5.0f, 2.0f, 2.0f};
         m_ShaderMap["Blending"] = "res/shaders/OGLBookBlending.shader";
 
         m_ActiveShader = m_ShaderMap["Blending"];
         m_Shader = std::make_unique<Shader>(m_ActiveShader);
-        
-        //CUBE
+
+        // CUBE
         m_CubeVAO = std::make_unique<VertexArray>();
         m_CubeVBO = std::make_unique<VertexBuffer>(cubeVertices, 36 * 5 * sizeof(float));
         VertexBufferLayout CubeLayout;
@@ -82,7 +81,7 @@ namespace test {
         m_CubeTexture = std::make_unique<Texture>("res/textures/marble.jpg");
         m_CubeTexture->Bind(0);
 
-        //Plane
+        // Plane
         m_PlaneVAO = std::make_unique<VertexArray>();
         m_PlaneVBO = std::make_unique<VertexBuffer>(planeVertices, 6 * 5 * sizeof(float));
         VertexBufferLayout PlaneLayout;
@@ -93,21 +92,20 @@ namespace test {
         m_PlaneTexture->Bind(1);
 
         windows.push_back(glm::vec3(-1.5f, 0.0f, -0.48f));
-        windows.push_back(glm::vec3( 1.5f, 0.0f,  0.51f));
-        windows.push_back(glm::vec3( 0.0f, 0.0f,  0.7f));
+        windows.push_back(glm::vec3(1.5f, 0.0f, 0.51f));
+        windows.push_back(glm::vec3(0.0f, 0.0f, 0.7f));
         windows.push_back(glm::vec3(-0.3f, 0.0f, -2.3f));
-        windows.push_back(glm::vec3( 0.5f, 0.0f, -0.6f));
+        windows.push_back(glm::vec3(0.5f, 0.0f, -0.6f));
 
         float WindowsVert[] = {
             // positions             // texture Coords (note we set these higher than 1 (together with GL_REPEAT as texture wrapping mode). this will cause the floor texture to repeat)
-            0.0f,  0.5f,  0.0f,      0.0f,  0.0f,
-            0.0f, -0.5f,  0.0f,      0.0f,  1.0f,
-            1.0f, -0.5f,  0.0f,      1.0f,  1.0f,
-    
-            0.0f,  0.5f,  0.0f,      0.0f,  0.0f,
-            1.0f, -0.5f,  0.0f,      1.0f,  1.0f,
-            1.0f,  0.5f,  0.0f,      1.0f,  0.0f							
-        };  
+            0.0f, 0.5f, 0.0f, 0.0f, 0.0f,
+            0.0f, -0.5f, 0.0f, 0.0f, 1.0f,
+            1.0f, -0.5f, 0.0f, 1.0f, 1.0f,
+
+            0.0f, 0.5f, 0.0f, 0.0f, 0.0f,
+            1.0f, -0.5f, 0.0f, 1.0f, 1.0f,
+            1.0f, 0.5f, 0.0f, 1.0f, 0.0f};
         m_WindowsVAO = std::make_unique<VertexArray>();
         m_WindowsVBO = std::make_unique<VertexBuffer>(WindowsVert, 6 * 5 * sizeof(float));
         VertexBufferLayout WindowsLayout;
@@ -116,8 +114,6 @@ namespace test {
         m_WindowsVAO->AddBuffer(*m_WindowsVBO, WindowsLayout);
         m_WindowsTexture = std::make_unique<Texture>("res/textures/window.png", true);
         m_WindowsTexture->Bind(2);
-
-
     }
 
     TestBlend::~TestBlend()
@@ -126,16 +122,14 @@ namespace test {
         glDisable(GL_DEPTH_TEST);
     }
 
-    void TestBlend::OnUpdate(float deltaTime) 
+    void TestBlend::OnUpdate(float deltaTime)
     {
-
     }
 
-    void TestBlend::OnRender(Camera& camera) 
+    void TestBlend::OnRender(Camera &camera)
     {
         glClearColor(0.15f, 0.15f, 0.15f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 
         for (size_t i = 0; i < windows.size(); ++i)
         {
@@ -146,7 +140,6 @@ namespace test {
         m_CubeTexture->Bind(0);
         m_PlaneTexture->Bind(1);
         m_WindowsTexture->Bind(2);
-
 
         glm::mat4 model = glm::mat4(1.0f);
         glm::mat4 view = camera.GetViewMatrix();
@@ -174,7 +167,7 @@ namespace test {
 
         m_WindowsVAO->Bind();
         m_Shader->SetUniform1i("texture1", 2);
-        for(std::map<float, glm::vec3>::reverse_iterator it = m_Sorted.rbegin(); it != m_Sorted.rend(); ++it)
+        for (std::map<float, glm::vec3>::reverse_iterator it = m_Sorted.rbegin(); it != m_Sorted.rend(); ++it)
         {
             model = glm::mat4(1.0f);
             model = glm::translate(model, it->second);
@@ -183,10 +176,9 @@ namespace test {
         }
 
         m_Sorted.clear();
-
     }
 
-    void TestBlend::OnImGuiRender() 
+    void TestBlend::OnImGuiRender()
     {
     }
 }

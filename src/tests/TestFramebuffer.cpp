@@ -2,7 +2,8 @@
 
 #include "imgui/imgui.h"
 
-namespace test {
+namespace test
+{
 
     TestFramebuffer::TestFramebuffer()
         : Test("Framebuffer")
@@ -14,7 +15,7 @@ namespace test {
         /*
             Remember: to specify vertices in a counter-clockwise winding order you need to visualize the triangle
             as if you're in front of the triangle and from that point of view, is where you set their order.
-            
+
             To define the order of a triangle on the right side of the cube for example, you'd imagine yourself looking
             straight at the right side of the cube, and then visualize the triangle and make sure their order is specified
             in a counter-clockwise order. This takes some practice, but try visualizing this yourself and see that this
@@ -23,68 +24,66 @@ namespace test {
 
         float cubeVertices[] = {
             // Back face
-            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // Bottom-left
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-             0.5f, -0.5f, -0.5f,  1.0f, 0.0f, // bottom-right         
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right
-            -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, // bottom-left
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
+            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, // Bottom-left
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,   // top-right
+            0.5f, -0.5f, -0.5f, 1.0f, 0.0f,  // bottom-right
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,   // top-right
+            -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, // bottom-left
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f,  // top-left
             // Front face
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-             0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
-             0.5f,  0.5f,  0.5f,  1.0f, 1.0f, // top-right
-            -0.5f,  0.5f,  0.5f,  0.0f, 1.0f, // top-left
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, // bottom-left
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,  // bottom-right
+            0.5f, 0.5f, 0.5f, 1.0f, 1.0f,   // top-right
+            0.5f, 0.5f, 0.5f, 1.0f, 1.0f,   // top-right
+            -0.5f, 0.5f, 0.5f, 0.0f, 1.0f,  // top-left
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, // bottom-left
             // Left face
-            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
-            -0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-left
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-left
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
-            -0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-right
-            // Right face
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
-             0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right         
-             0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // bottom-right
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // top-left
-             0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-left     
+            -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,   // top-right
+            -0.5f, 0.5f, -0.5f, 1.0f, 1.0f,  // top-left
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, // bottom-left
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, // bottom-left
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // bottom-right
+            -0.5f, 0.5f, 0.5f, 1.0f, 0.0f,   // top-right
+                                             // Right face
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,    // top-left
+            0.5f, -0.5f, -0.5f, 0.0f, 1.0f,  // bottom-right
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,   // top-right
+            0.5f, -0.5f, -0.5f, 0.0f, 1.0f,  // bottom-right
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,    // top-left
+            0.5f, -0.5f, 0.5f, 0.0f, 0.0f,   // bottom-left
             // Bottom face
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
-             0.5f, -0.5f, -0.5f,  1.0f, 1.0f, // top-left
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
-             0.5f, -0.5f,  0.5f,  1.0f, 0.0f, // bottom-left
-            -0.5f, -0.5f,  0.5f,  0.0f, 0.0f, // bottom-right
-            -0.5f, -0.5f, -0.5f,  0.0f, 1.0f, // top-right
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, // top-right
+            0.5f, -0.5f, -0.5f, 1.0f, 1.0f,  // top-left
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,   // bottom-left
+            0.5f, -0.5f, 0.5f, 1.0f, 0.0f,   // bottom-left
+            -0.5f, -0.5f, 0.5f, 0.0f, 0.0f,  // bottom-right
+            -0.5f, -0.5f, -0.5f, 0.0f, 1.0f, // top-right
             // Top face
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-             0.5f,  0.5f, -0.5f,  1.0f, 1.0f, // top-right     
-             0.5f,  0.5f,  0.5f,  1.0f, 0.0f, // bottom-right
-            -0.5f,  0.5f, -0.5f,  0.0f, 1.0f, // top-left
-            -0.5f,  0.5f,  0.5f,  0.0f, 0.0f  // bottom-left        
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, // top-left
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,   // bottom-right
+            0.5f, 0.5f, -0.5f, 1.0f, 1.0f,  // top-right
+            0.5f, 0.5f, 0.5f, 1.0f, 0.0f,   // bottom-right
+            -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, // top-left
+            -0.5f, 0.5f, 0.5f, 0.0f, 0.0f   // bottom-left
         };
         float planeVertices[] = {
             // positions             // texture Coords (note we set these higher than 1 (together with GL_REPEAT as texture wrapping mode). this will cause the floor texture to repeat)
-             5.0f, -0.5f,  5.0f,     2.0f, 0.0f,
-            -5.0f, -0.5f,  5.0f,     0.0f, 0.0f,
-            -5.0f, -0.5f, -5.0f,     0.0f, 2.0f,
+            5.0f, -0.5f, 5.0f, 2.0f, 0.0f,
+            -5.0f, -0.5f, 5.0f, 0.0f, 0.0f,
+            -5.0f, -0.5f, -5.0f, 0.0f, 2.0f,
 
-             5.0f, -0.5f,  5.0f,     2.0f, 0.0f,
-            -5.0f, -0.5f, -5.0f,     0.0f, 2.0f,
-             5.0f, -0.5f, -5.0f,     2.0f, 2.0f								
-        };
-        float quadVertices[] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
-            // positions   // texCoords
-             0.75f, -0.75f,  1.0f, 0.0f,
-            -0.75f,  0.75f,  0.0f, 1.0f,
-            -0.75f, -0.75f,  0.0f, 0.0f,
+            5.0f, -0.5f, 5.0f, 2.0f, 0.0f,
+            -5.0f, -0.5f, -5.0f, 0.0f, 2.0f,
+            5.0f, -0.5f, -5.0f, 2.0f, 2.0f};
+        float quadVertices[] = {// vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
+                                // positions   // texCoords
+                                0.75f, -0.75f, 1.0f, 0.0f,
+                                -0.75f, 0.75f, 0.0f, 1.0f,
+                                -0.75f, -0.75f, 0.0f, 0.0f,
 
-             0.75f, -0.75f,  1.0f, 0.0f,
-            -0.75f,  0.75f,  0.0f, 1.0f,
-             0.75f,  0.75f,  1.0f, 1.0f
-        };
+                                0.75f, -0.75f, 1.0f, 0.0f,
+                                -0.75f, 0.75f, 0.0f, 1.0f,
+                                0.75f, 0.75f, 1.0f, 1.0f};
 
         m_ShaderMap["Blending"] = "res/shaders/OGLBookBlending.shader";
 
@@ -95,8 +94,8 @@ namespace test {
         m_Shader->Bind();
         m_Shader->SetUniform1i("texture1", 0);
         m_ScreenShader->Bind();
-        
-        //CUBE
+
+        // CUBE
         m_CubeVAO = std::make_unique<VertexArray>();
         m_CubeVBO = std::make_unique<VertexBuffer>(cubeVertices, 36 * 5 * sizeof(float));
         VertexBufferLayout CubeLayout;
@@ -106,7 +105,7 @@ namespace test {
         m_CubeTexture = std::make_unique<Texture>("res/textures/container.jpg");
         m_CubeTexture->Bind(0);
 
-        //PLANE
+        // PLANE
         m_PlaneVAO = std::make_unique<VertexArray>();
         m_PlaneVBO = std::make_unique<VertexBuffer>(planeVertices, 6 * 5 * sizeof(float));
         VertexBufferLayout PlaneLayout;
@@ -116,7 +115,7 @@ namespace test {
         m_PlaneTexture = std::make_unique<Texture>("res/textures/metal.png");
         m_PlaneTexture->Bind(1);
 
-        //QUAD
+        // QUAD
         m_QuadVAO = std::make_unique<VertexArray>();
         m_QuadVBO = std::make_unique<VertexBuffer>(quadVertices, 6 * 4 * sizeof(float));
         VertexBufferLayout QuadLayout;
@@ -124,12 +123,10 @@ namespace test {
         QuadLayout.Push<float>(2);
         m_QuadVAO->AddBuffer(*m_QuadVBO, QuadLayout);
 
-
-
         /*
-         * TODO: Part these into classes. 
+         * TODO: Part these into classes.
          */
-        
+
         glGenFramebuffers(1, &m_Fbo);
         glBindFramebuffer(GL_FRAMEBUFFER, m_Fbo);
 
@@ -149,7 +146,6 @@ namespace test {
         if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
             std::cout << "ERROR::FRAMEBUFFER:: Framebuffer is not complete!" << std::endl;
         glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
     }
 
     TestFramebuffer::~TestFramebuffer()
@@ -158,12 +154,11 @@ namespace test {
         glDisable(GL_DEPTH_TEST);
     }
 
-    void TestFramebuffer::OnUpdate(float deltaTime) 
+    void TestFramebuffer::OnUpdate(float deltaTime)
     {
-
     }
 
-    void TestFramebuffer::OnRender(Camera& camera) 
+    void TestFramebuffer::OnRender(Camera &camera)
     {
         Renderer renderer;
 
@@ -203,14 +198,11 @@ namespace test {
         glClearColor(0.1f, 0.1f, 0.1f, 1.0f); // set clear color to white (not really necessary actually, since we won't be able to see behind the quad anyways)
         glClear(GL_COLOR_BUFFER_BIT);
 
-
-        glBindTexture(GL_TEXTURE_2D, m_Tcb);	// use the color attachment texture as the texture of the quad plane
+        glBindTexture(GL_TEXTURE_2D, m_Tcb); // use the color attachment texture as the texture of the quad plane
         renderer.Draw(*m_QuadVAO, *m_ScreenShader, 6);
-
-
     }
 
-    void TestFramebuffer::OnImGuiRender() 
+    void TestFramebuffer::OnImGuiRender()
     {
     }
 }

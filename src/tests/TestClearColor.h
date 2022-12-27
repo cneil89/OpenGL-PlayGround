@@ -2,7 +2,8 @@
 
 #include "Test.h"
 
-namespace test {
+namespace test
+{
 
     class TestClearColor : public Test
     {
@@ -11,8 +12,9 @@ namespace test {
         ~TestClearColor();
 
         void OnUpdate(float deltaTime) override;
-        void OnRender(Camera& camera) override;
+        void OnRender(Camera &camera) override;
         void OnImGuiRender() override;
+
     private:
         float m_ClearColor[4];
     };

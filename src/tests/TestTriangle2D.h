@@ -5,7 +5,8 @@
 #include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
 
-namespace test {
+namespace test
+{
 
     class TestTriangle2D : public Test
     {
@@ -14,8 +15,9 @@ namespace test {
         ~TestTriangle2D();
 
         void OnUpdate(float deltaTime) override;
-        void OnRender(Camera& camera) override;
+        void OnRender(Camera &camera) override;
         void OnImGuiRender() override;
+
     private:
         std::unique_ptr<VertexArray> m_VAO;
         std::unique_ptr<VertexBuffer> m_VertexBuffer;

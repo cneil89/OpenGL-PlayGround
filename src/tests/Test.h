@@ -2,9 +2,8 @@
 #include "defines.h"
 #include "Camera.h"
 
-
-
-namespace test {
+namespace test
+{
     class Test
     {
     public:
@@ -12,9 +11,10 @@ namespace test {
         virtual ~Test() {}
 
         virtual void OnUpdate(float deltaTime) {}
-        virtual void OnRender(Camera& camera) {}
+        virtual void OnRender(Camera &camera) {}
         virtual void OnImGuiRender() {}
         virtual std::string getTestName() { return m_TestName; }
+
     private:
         std::string m_TestName;
     };
@@ -22,20 +22,21 @@ namespace test {
     class TestMenu : public Test
     {
     public:
-        TestMenu(Test*& currentTestPointer);
+        TestMenu(Test *&currentTestPointer);
 
         void OnImGuiRender() override;
 
-        template<typename T>
-        void RegisterTest(const std::string& name)
+        template <typename T>
+        void RegisterTest(const std::string &name)
         {
             std::cout << "Registering Test -> " << name << std::endl;
 
-            m_Tests.push_back(std::make_pair(name, []() { return new T(); }));
+            m_Tests.push_back(std::make_pair(name, []()
+                                             { return new T(); }));
         }
-    private:
-        Test*& m_CurrentTest;
-        std::vector<std::pair<std::string, std::function<Test*()>>> m_Tests;
 
+    private:
+        Test *&m_CurrentTest;
+        std::vector<std::pair<std::string, std::function<Test *()>>> m_Tests;
     };
 }
