@@ -111,6 +111,13 @@ namespace test
                                                                        "res/textures/skybox2/front.jpg",
                                                                        "res/textures/skybox2/back.jpg"});
 
+        m_SkyboxTextureDictionary["Space"] = Texture::LoadCubemap({"res/textures/skybox3/right.png",
+                                                                   "res/textures/skybox3/left.png",
+                                                                   "res/textures/skybox3/top.png",
+                                                                   "res/textures/skybox3/bottom.png",
+                                                                   "res/textures/skybox3/front.png",
+                                                                   "res/textures/skybox3/back.png"});
+
         m_CubemapTexture = m_SkyboxTextureDictionary["Skyscape"];
 
         m_CubeShader = std::make_unique<Shader>("res/shaders/OGLBookDepthTesting.shader");

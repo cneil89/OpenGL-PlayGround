@@ -111,7 +111,23 @@ namespace test
                                                                        "res/textures/skybox2/front.jpg",
                                                                        "res/textures/skybox2/back.jpg"});
 
+        m_SkyboxTextureDictionary["Space"] = Texture::LoadCubemap({"res/textures/skybox3/right.png",
+                                                                   "res/textures/skybox3/left.png",
+                                                                   "res/textures/skybox3/top.png",
+                                                                   "res/textures/skybox3/bottom.png",
+                                                                   "res/textures/skybox3/front.png",
+                                                                   "res/textures/skybox3/back.png"});
+
         m_CubemapTexture = m_SkyboxTextureDictionary["Skyscape"];
+
+        m_ReflactMap["Reflect"] = 0;
+        m_ReflactMap["Refract"] = 1;
+
+        m_RefractIndexMap["Air"] = 1.00;
+        m_RefractIndexMap["Water"] = 1.33;
+        m_RefractIndexMap["Ice"] = 1.309;
+        m_RefractIndexMap["Glass"] = 1.52;
+        m_RefractIndexMap["Diamond"] = 2.42;
 
         m_CubeShader = std::make_unique<Shader>("res/shaders/OGLBookSkyboxContainer.shader");
         m_CubeVAO = std::make_unique<VertexArray>();
@@ -131,7 +147,7 @@ namespace test
         m_SkyBoxVAO->AddBuffer(*m_SkyBoxVBO, skyboxLayout);
 
         m_CubeShader->Bind();
-        m_CubeShader->SetUniform1i("texture1", 0);
+        m_CubeShader->SetUniform1i("reflact", m_ReflactSelector);
         m_SkyboxShader->Bind();
         m_SkyboxShader->SetUniform1i("skybox", 0);
     }
@@ -162,7 +178,8 @@ namespace test
         m_CubeShader->SetUniformMat4f("model", model);
         m_CubeShader->SetUniformMat4f("view", view);
         m_CubeShader->SetUniformMat4f("projection", projection);
-        m_CubeShader->SetUniform1i("texture1", 0);
+        m_CubeShader->SetUniform1i("reflact", m_ReflactSelector);
+        m_CubeShader->SetUniform1f("refractiveIndex", m_RefractIndex);
         m_CubeShader->SetUniformVec3f("cameraPos", camera.GetPosition());
         renderer.Draw(*m_CubeVAO, *m_CubeShader, 36);
 
@@ -182,8 +199,22 @@ namespace test
 
     void TestEnvironmentMapping::OnImGuiRender()
     {
-        for (auto &item : m_SkyboxTextureDictionary)
+        for (const auto &item : m_SkyboxTextureDictionary)
             if (ImGui::RadioButton(item.first.c_str(), m_CubemapTexture == item.second))
                 m_CubemapTexture = item.second;
+
+        ImGui::Separator();
+
+        for (const auto &item : m_ReflactMap)
+            if (ImGui::RadioButton(item.first.c_str(), m_ReflactSelector == item.second))
+                m_ReflactSelector = item.second;
+
+        if (m_ReflactSelector == 1)
+        {
+            ImGui::Separator();
+            for (const auto &item : m_RefractIndexMap)
+                if (ImGui::RadioButton(item.first.c_str(), m_RefractIndex == item.second))
+                    m_RefractIndex = item.second;
+        }
     }
 }

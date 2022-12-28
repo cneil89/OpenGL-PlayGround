@@ -24,12 +24,25 @@ out vec4 FragColor;
 in vec3 Normal;
 in vec3 Position;
 
+uniform float refractiveIndex;
+uniform int reflact;
 uniform vec3 cameraPos;
 uniform samplerCube skybox;
+
+vec3 GetReflectRefract(int reflact, vec3 I, float RI) {
+    if (reflact == 0) {
+        return reflect(I, normalize(Normal));
+    } else {
+        if (reflact == 1) {
+            float ratio = 1.00 / RI;
+            return refract(I, normalize(Normal), ratio);
+        }
+    }
+}
 
 void main()
 {    
     vec3 I = normalize(Position - cameraPos);
-    vec3 R = reflect(I, normalize(Normal));
+    vec3 R = GetReflectRefract(reflact, I, refractiveIndex);
     FragColor = vec4(texture(skybox, R).rgb, 1.0);
 }

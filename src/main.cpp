@@ -4,6 +4,7 @@
 
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw_gl3.h"
+#include "stb/stb_image.h"
 
 // Camera
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
@@ -57,6 +58,14 @@ int main()
     bool wireFrameEnabled = false;
 
     window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, APP_NAME, NULL, NULL);
+
+    {
+        GLFWimage images[1];
+        images[0].pixels = stbi_load("res/icons/ogl.png", &images[0].width, &images[0].height, 0, 4);
+        glfwSetWindowIcon(window, 1, images);
+        stbi_image_free(images[0].pixels);
+    }
+
     if (!window)
     {
         glfwTerminate();
@@ -92,7 +101,7 @@ int main()
 
         test::Test *currentTest = nullptr;
         test::TestMenu *testMenu = new test::TestMenu(currentTest);
-        currentTest = new test::TestCubemap();
+        currentTest = new test::TestEnvironmentMapping();
 
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");
         testMenu->RegisterTest<test::TestTexture2D>("2D Texture");
