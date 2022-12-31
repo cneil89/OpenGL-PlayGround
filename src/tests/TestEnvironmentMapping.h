@@ -23,7 +23,7 @@ namespace test
         std::unordered_map<std::string, uint32_t> m_SkyboxTextureDictionary;
         uint32_t m_ReflactSelector = 0;
         std::unordered_map<std::string, uint32_t> m_ReflactMap;
-        float m_RefractIndex = 1.52;
+        float m_RefractIndex = 1.52f;
         std::unordered_map<std::string, float> m_RefractIndexMap;
 
         std::unique_ptr<Shader> m_CubeShader;

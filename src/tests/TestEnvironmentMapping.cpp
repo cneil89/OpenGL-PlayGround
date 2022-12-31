@@ -1,7 +1,6 @@
 #include "TestEnvironmentMapping.h"
 #include "Renderer.h"
 #include "VertexBufferLayout.h"
-#include "stb/stb_image.h"
 #include "imgui/imgui.h"
 
 namespace test
@@ -13,16 +12,16 @@ namespace test
         float cubeVertices[] = {
             // positions          // normals
             -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
-            0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
-            0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
-            0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
+             0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
+             0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
+             0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
             -0.5f, 0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
             -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, -1.0f,
 
             -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
-            0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
-            0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
-            0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+             0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+             0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
+             0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
             -0.5f, 0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
             -0.5f, -0.5f, 0.5f, 0.0f, 0.0f, 1.0f,
 
@@ -33,24 +32,24 @@ namespace test
             -0.5f, -0.5f, 0.5f, -1.0f, 0.0f, 0.0f,
             -0.5f, 0.5f, 0.5f, -1.0f, 0.0f, 0.0f,
 
-            0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
-            0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
-            0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
-            0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
-            0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
-            0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
+             0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
+             0.5f, 0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
+             0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
+             0.5f, -0.5f, -0.5f, 1.0f, 0.0f, 0.0f,
+             0.5f, -0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
+             0.5f, 0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
 
             -0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f,
-            0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f,
-            0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f,
-            0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f,
+             0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f,
+             0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f,
+             0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f,
             -0.5f, -0.5f, 0.5f, 0.0f, -1.0f, 0.0f,
             -0.5f, -0.5f, -0.5f, 0.0f, -1.0f, 0.0f,
 
-            0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+             0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
             -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-            0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,
-            0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,
+             0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,
+             0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,
             -0.5f, 0.5f, 0.5f, 0.0f, 1.0f, 0.0f,
             -0.5f, 0.5f, -0.5f, 0.0f, 1.0f, 0.0f};
         float skyboxVertices[] = {
@@ -123,11 +122,11 @@ namespace test
         m_ReflactMap["Reflect"] = 0;
         m_ReflactMap["Refract"] = 1;
 
-        m_RefractIndexMap["Air"] = 1.00;
-        m_RefractIndexMap["Water"] = 1.33;
-        m_RefractIndexMap["Ice"] = 1.309;
-        m_RefractIndexMap["Glass"] = 1.52;
-        m_RefractIndexMap["Diamond"] = 2.42;
+        m_RefractIndexMap["Air"] = 1.00f;
+        m_RefractIndexMap["Water"] = 1.33f;
+        m_RefractIndexMap["Ice"] = 1.309f;
+        m_RefractIndexMap["Glass"] = 1.52f;
+        m_RefractIndexMap["Diamond"] = 2.42f;
 
         m_CubeShader = std::make_unique<Shader>("res/shaders/OGLBookSkyboxContainer.shader");
         m_CubeVAO = std::make_unique<VertexArray>();
