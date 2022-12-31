@@ -159,10 +159,10 @@ namespace test
         for (uint32_t i = 0; i < m_LightPositions.size() && i < MAX_PLIGHT; i++)
         {
             ImGui::PushID(i);
+            ImGui::SliderFloat3("", &m_LightPositions[i].x, MIN_VP * 2, MAX_VP * 2);
+            ImGui::SameLine();
             if (ImGui::Button("Remove"))
                 m_LightPositions.erase(m_LightPositions.begin() + i);
-            ImGui::SameLine();
-            ImGui::SliderFloat3("", &m_LightPositions[i].x, MIN_VP * 2, MAX_VP * 2);
             ImGui::PopID();
         }
 
@@ -172,10 +172,10 @@ namespace test
             for (uint32_t i = 0; i < m_CubePositions.size(); i++)
             {
                 ImGui::PushID(i);
+                ImGui::SliderFloat3("", &m_CubePositions[i].x, MIN_VP, MAX_VP);
+                ImGui::SameLine();
                 if (ImGui::Button("Remove"))
                     m_CubePositions.erase(m_CubePositions.begin() + i);
-                ImGui::SameLine();
-                ImGui::SliderFloat3("", &m_CubePositions[i].x, MIN_VP, MAX_VP);
                 ImGui::PopID();
             }
 

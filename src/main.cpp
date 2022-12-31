@@ -26,6 +26,7 @@ bool firstMouse = true;
 #include "tests/TestFramebuffer.h"
 #include "tests/TestCubemap.h"
 #include "tests/TestEnvironmentMapping.h"
+#include "tests/TestAdvancedGLSL.h"
 
 void framebuffer_size_callback(GLFWwindow *window, int width, int height);
 void processInput(GLFWwindow *window);
@@ -101,7 +102,7 @@ int main()
 
         test::Test *currentTest = nullptr;
         test::TestMenu *testMenu = new test::TestMenu(currentTest);
-        currentTest = new test::TestEnvironmentMapping();
+        currentTest = new test::TestAdvancedGLSL();
 
         testMenu->RegisterTest<test::TestClearColor>("Clear Color");
         testMenu->RegisterTest<test::TestTexture2D>("2D Texture");
@@ -116,6 +117,7 @@ int main()
         testMenu->RegisterTest<test::TestFramebuffer>("Framebuffer");
         testMenu->RegisterTest<test::TestCubemap>("Cubemap");
         testMenu->RegisterTest<test::TestEnvironmentMapping>("Environment Mapping");
+        testMenu->RegisterTest<test::TestAdvancedGLSL>("Advanced GLSL");
 
         while (!glfwWindowShouldClose(window))
         {

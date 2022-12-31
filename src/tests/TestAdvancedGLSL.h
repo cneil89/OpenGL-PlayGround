@@ -19,6 +19,10 @@ namespace test
 	private:
 		std::unique_ptr<VertexArray> m_CubeVAO;
 		std::unique_ptr<VertexBuffer> m_CubeVBO;
-		std::unique_ptr<Shader> m_Shader;
+		std::unique_ptr<Shader> m_ShaderRed;
+		std::unique_ptr<Shader> m_ShaderGreen;
+		std::unique_ptr<Shader> m_ShaderBlue;
+		std::unique_ptr<Shader> m_ShaderYellow;
+		uint32_t m_UBOMatrices;
 	};
 }
