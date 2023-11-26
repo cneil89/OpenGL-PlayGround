@@ -66,7 +66,7 @@ namespace test
             5.0f, -0.5f, 5.0f, 2.0f, 0.0f,
             -5.0f, -0.5f, -5.0f, 0.0f, 2.0f,
             5.0f, -0.5f, -5.0f, 2.0f, 2.0f};
-        m_ShaderMap["Blending"] = "res/shaders/OGLBookBlending.shader";
+        m_ShaderMap["Blending"] = "../res/shaders/OGLBookBlending.shader";
 
         m_ActiveShader = m_ShaderMap["Blending"];
         m_Shader = std::make_unique<Shader>(m_ActiveShader);
@@ -78,7 +78,7 @@ namespace test
         CubeLayout.Push<float>(3);
         CubeLayout.Push<float>(2);
         m_CubeVAO->AddBuffer(*m_CubeVBO, CubeLayout);
-        m_CubeTexture = std::make_unique<Texture>("res/textures/marble.jpg");
+        m_CubeTexture = std::make_unique<Texture>("../res/textures/marble.jpg");
         m_CubeTexture->Bind(0);
 
         // Plane
@@ -88,7 +88,7 @@ namespace test
         PlaneLayout.Push<float>(3);
         PlaneLayout.Push<float>(2);
         m_PlaneVAO->AddBuffer(*m_PlaneVBO, PlaneLayout);
-        m_PlaneTexture = std::make_unique<Texture>("res/textures/wood_planks.png");
+        m_PlaneTexture = std::make_unique<Texture>("../res/textures/wood_planks.png");
         m_PlaneTexture->Bind(1);
 
         windows.push_back(glm::vec3(-1.5f, 0.0f, -0.48f));
@@ -112,7 +112,7 @@ namespace test
         WindowsLayout.Push<float>(3);
         WindowsLayout.Push<float>(2);
         m_WindowsVAO->AddBuffer(*m_WindowsVBO, WindowsLayout);
-        m_WindowsTexture = std::make_unique<Texture>("res/textures/window.png", true);
+        m_WindowsTexture = std::make_unique<Texture>("../res/textures/window.png", true);
         m_WindowsTexture->Bind(2);
     }
 

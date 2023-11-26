@@ -63,8 +63,8 @@ namespace test
             5.0f, -0.5f, 5.0f, 2.0f, 0.0f,
             -5.0f, -0.5f, -5.0f, 0.0f, 2.0f,
             5.0f, -0.5f, -5.0f, 2.0f, 2.0f};
-        m_ShaderMap["Texture"] = "res/shaders/OGLBookDepthTesting.shader";
-        m_ShaderMap["Depth Test"] = "res/shaders/OGLBookDepthTesting2.shader";
+        m_ShaderMap["Texture"] = "../res/shaders/OGLBookDepthTesting.shader";
+        m_ShaderMap["Depth Test"] = "../res/shaders/OGLBookDepthTesting2.shader";
 
         m_ActiveShader = m_ShaderMap["Texture"];
         m_Shader = std::make_unique<Shader>(m_ActiveShader);
@@ -76,7 +76,7 @@ namespace test
         CubeLayout.Push<float>(3);
         CubeLayout.Push<float>(2);
         m_CubeVAO->AddBuffer(*m_CubeVBO, CubeLayout);
-        m_CubeTexture = std::make_unique<Texture>("res/textures/marble.jpg");
+        m_CubeTexture = std::make_unique<Texture>("../res/textures/marble.jpg");
         m_CubeTexture->Bind(0);
 
         // Plane
@@ -86,7 +86,7 @@ namespace test
         PlaneLayout.Push<float>(3);
         PlaneLayout.Push<float>(2);
         m_PlaneVAO->AddBuffer(*m_PlaneVBO, PlaneLayout);
-        m_PlaneTexture = std::make_unique<Texture>("res/textures/metal.png");
+        m_PlaneTexture = std::make_unique<Texture>("../res/textures/metal.png");
         m_PlaneTexture->Bind(1);
     }
 

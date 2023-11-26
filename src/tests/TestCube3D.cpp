@@ -79,9 +79,9 @@ namespace test
 
         m_VAO->AddBuffer(*m_VertexBuffer, layout);
 
-        m_Shader = std::make_unique<Shader>("res/shaders/OGLBookShader.shader");
-        m_Texture1 = std::make_unique<Texture>("res/textures/container.jpg", false, true, false);
-        m_Texture2 = std::make_unique<Texture>("res/textures/awesomeface.png", false, true, false);
+        m_Shader = std::make_unique<Shader>("../res/shaders/OGLBookShader.shader");
+        m_Texture1 = std::make_unique<Texture>("../res/textures/container.jpg", false, true, false);
+        m_Texture2 = std::make_unique<Texture>("../res/textures/awesomeface.png", false, true, false);
         m_Texture1->Bind(0);
         m_Texture2->Bind(1);
         m_Shader->Bind();

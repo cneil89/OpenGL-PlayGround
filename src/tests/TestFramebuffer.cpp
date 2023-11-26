@@ -85,11 +85,11 @@ namespace test
                                 -0.75f, 0.75f, 0.0f, 1.0f,
                                 0.75f, 0.75f, 1.0f, 1.0f};
 
-        m_ShaderMap["Blending"] = "res/shaders/OGLBookBlending.shader";
+        m_ShaderMap["Blending"] = "../res/shaders/OGLBookBlending.shader";
 
         m_ActiveShader = m_ShaderMap["Blending"];
         m_Shader = std::make_unique<Shader>(m_ActiveShader);
-        m_ScreenShader = std::make_unique<Shader>("res/shaders/OGLBookScreen.shader");
+        m_ScreenShader = std::make_unique<Shader>("../res/shaders/OGLBookScreen.shader");
 
         m_Shader->Bind();
         m_Shader->SetUniform1i("texture1", 0);
@@ -102,7 +102,7 @@ namespace test
         CubeLayout.Push<float>(3);
         CubeLayout.Push<float>(2);
         m_CubeVAO->AddBuffer(*m_CubeVBO, CubeLayout);
-        m_CubeTexture = std::make_unique<Texture>("res/textures/container.jpg");
+        m_CubeTexture = std::make_unique<Texture>("../res/textures/container.jpg");
         m_CubeTexture->Bind(0);
 
         // PLANE
@@ -112,7 +112,7 @@ namespace test
         PlaneLayout.Push<float>(3);
         PlaneLayout.Push<float>(2);
         m_PlaneVAO->AddBuffer(*m_PlaneVBO, PlaneLayout);
-        m_PlaneTexture = std::make_unique<Texture>("res/textures/metal.png");
+        m_PlaneTexture = std::make_unique<Texture>("../res/textures/metal.png");
         m_PlaneTexture->Bind(1);
 
         // QUAD
