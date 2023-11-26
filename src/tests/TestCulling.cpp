@@ -70,7 +70,7 @@ namespace test
             -0.5f, 0.5f, 0.5f, 0.0f, 0.0f   // bottom-left
         };
 
-        m_ShaderMap["Blending"] = "res/shaders/OGLBookBlending.shader";
+        m_ShaderMap["Blending"] = "../res/shaders/OGLBookBlending.shader";
 
         m_ActiveShader = m_ShaderMap["Blending"];
         m_Shader = std::make_unique<Shader>(m_ActiveShader);
@@ -82,7 +82,7 @@ namespace test
         CubeLayout.Push<float>(3);
         CubeLayout.Push<float>(2);
         m_CubeVAO->AddBuffer(*m_CubeVBO, CubeLayout);
-        m_CubeTexture = std::make_unique<Texture>("res/textures/brickwall.jpg");
+        m_CubeTexture = std::make_unique<Texture>("../res/textures/brickwall.jpg");
         m_CubeTexture->Bind(0);
     }
 

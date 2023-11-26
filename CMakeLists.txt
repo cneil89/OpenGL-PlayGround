@@ -19,9 +19,9 @@ set(ASSIMP_WARNINGS_AS_ERRORS OFF CACHE BOOL "Assimp warnings as errors" FORCE)
 add_subdirectory(vendor/assimp)
 
 #GLEW
-message("\nFinding OpenGL")
-find_package(OpenGL REQUIRED)
-include_directories(${OPENGL_INCLUDE_DIRS})
+message("\nFinding GLEW")
+set(ONLY_LIBS ON CACHE BOOL "Dop not build executables" FORCE)
+add_subdirectory(vendor/GLEW)
 
 message("\n###### END VENDOR CONFIGS ######\n")
 
@@ -70,6 +70,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC vendor/stb_image/include)
 target_include_directories(${PROJECT_NAME} PUBLIC vendor/imgui/include)
 target_include_directories(${PROJECT_NAME} PUBLIC vendor/assimp/include)
 
-target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} glfw)
+target_link_libraries(${PROJECT_NAME} libglew_static)
 target_link_libraries(${PROJECT_NAME} assimp)

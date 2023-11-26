@@ -12,13 +12,13 @@ namespace test
 {
 
     TestModel::TestModel()
-        : Test("Model"), m_Model("res/models/backpack/backpack.obj")
-    // : m_Model("res/models/donut/donut.obj")
-    // : m_Model("res/models/cubes/cubes.obj")
+        : Test("Model"), m_Model("../res/models/backpack/backpack.obj")
+    // : m_Model("../res/models/donut/donut.obj")
+    // : m_Model("../res/models/cubes/cubes.obj")
     {
         glEnable(GL_DEPTH_TEST);
-        m_Shader = std::make_unique<Shader>("res/shaders/OGLBookPointShader.shader");
-        m_LightCubeShader = std::make_unique<Shader>("res/shaders/OGLBookLightCube.shader");
+        m_Shader = std::make_unique<Shader>("../res/shaders/OGLBookPointShader.shader");
+        m_LightCubeShader = std::make_unique<Shader>("../res/shaders/OGLBookLightCube.shader");
     }
 
     TestModel::~TestModel()
