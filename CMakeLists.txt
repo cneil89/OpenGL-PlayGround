@@ -7,7 +7,7 @@ message("GLFW CONFIGS")
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "GLFW build documentation" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "GLFW build documentation" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "GLFW build documentation" FORCE)
-add_subdirectory(vendor/glfw)
+add_subdirectory(vendor/GLFW)
 
 #ASSIMP
 message("\nASSIMP Configs")
@@ -16,7 +16,7 @@ set(ASSIMP_BUILD_TESTS OFF CACHE BOOL "Assimp build tests" FORCE)
 set(ASSIMP_INSTALL OFF CACHE BOOL "Assimp install" FORCE)
 set(ASSIMP_INSTALL_PDB OFF CACHE BOOL "Assimp install PDB" FORCE)
 set(ASSIMP_WARNINGS_AS_ERRORS OFF CACHE BOOL "Assimp warnings as errors" FORCE)
-add_subdirectory(vendor/assimp)
+# add_subdirectory(vendor/assimp)
 
 message("\n###### END VENDOR CONFIGS ######\n")
 
@@ -27,11 +27,11 @@ set(OGL_TEST_FILES src/tests/Test.cpp
                    src/tests/TestCube3D.cpp 
                    src/tests/TestPointLight3D.cpp 
                    src/tests/TestModel.cpp
-                   src/test/TestDepth.cpp 
-                   src/test/TestStencil.cpp 
-                   src/test/TestBlend.cpp 
-                   src/test/TestCulling.cpp 
-                   src/test/TestFrameBuffer.cpp 
+                   src/tests/TestDepth.cpp 
+                   src/tests/TestStencil.cpp 
+                   src/tests/TestBlend.cpp 
+                   src/tests/TestCulling.cpp 
+                   src/tests/TestFrameBuffer.cpp 
                    src/tests/TestCubemap.cpp 
                    src/tests/TestEnvironmentMapping.cpp 
                    src/tests/TestAdvancedGLSL.cpp)
@@ -51,3 +51,14 @@ set(SOURCE_FILES src/main.cpp
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES}
                                 ${OGL_TEST_FILES})               
+
+target_include_directories(${PROJECT_NAME} PUBLIC src)
+target_include_directories(${PROJECT_NAME} PUBLIC vendor/GLFW/include)
+target_include_directories(${PROJECT_NAME} PUBLIC vendor/GLEW/include)
+target_include_directories(${PROJECT_NAME} PUBLIC vendor/glm/include)
+target_include_directories(${PROJECT_NAME} PUBLIC vendor/stb_image/include)
+target_include_directories(${PROJECT_NAME} PUBLIC vendor/imgui/include)
+target_include_directories(${PROJECT_NAME} PUBLIC vendor/assimp/include)
+
+target_link_libraries(${PROJECT_NAME} glfw)
+target_link_libraries(${PROJECT_NAME} assimp)
