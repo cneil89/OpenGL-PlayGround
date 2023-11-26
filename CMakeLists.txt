@@ -21,7 +21,9 @@ add_subdirectory(vendor/assimp)
 #GLEW
 message("\nFinding GLEW")
 set(ONLY_LIBS ON CACHE BOOL "Dop not build executables" FORCE)
+add_definitions(-DGLEW_STATIC)
 add_subdirectory(vendor/GLEW)
+
 
 message("\n###### END VENDOR CONFIGS ######\n")
 

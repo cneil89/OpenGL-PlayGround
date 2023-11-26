@@ -9,3 +9,5 @@ OpenGL.make
 **.vcxproj
 **.vcxproj.filters
 **.vcxproj.user
+
+.vscode/
