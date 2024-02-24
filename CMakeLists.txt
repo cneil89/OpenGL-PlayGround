@@ -90,3 +90,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC vendor/assimp/include)
 target_link_libraries(${PROJECT_NAME} glfw)
 target_link_libraries(${PROJECT_NAME} libglew_static)
 target_link_libraries(${PROJECT_NAME} assimp)
+
+file(COPY ${CMAKE_CURRENT_SOURCE_DIR}/res
+    DESTINATION ${CMAKE_CURRENT_BINARY_DIR})

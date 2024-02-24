@@ -46,10 +46,10 @@ namespace test
 
         m_IndexBuffer = std::make_unique<IndexBuffer>(indices, 6);
 
-        m_Shader = std::make_unique<Shader>("../res/shaders/Basic.shader");
+        m_Shader = std::make_unique<Shader>("res/shaders/Basic.shader");
         m_Shader->Bind();
 
-        m_Texture = std::make_unique<Texture>("../res/textures/cute-dalmatian-sitting-cya.png");
+        m_Texture = std::make_unique<Texture>("res/textures/cute-dalmatian-sitting-cya.png");
         m_Shader->SetUniform1i("u_Texture", 0);
     }
 

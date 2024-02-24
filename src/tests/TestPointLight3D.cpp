@@ -72,10 +72,10 @@ namespace test
         m_LightVAO = std::make_unique<VertexArray>();
         m_LightVAO->AddBuffer(*m_VertexBuffer, layout);
 
-        m_Shader = std::make_unique<Shader>("../res/shaders/OGLBookPointShader.shader");
-        m_LightCubeShader = std::make_unique<Shader>("../res/shaders/OGLBookLightCube.shader");
-        m_Texture1 = std::make_unique<Texture>("../res/textures/container2.png", false);
-        m_Texture2 = std::make_unique<Texture>("../res/textures/container2_specular.png", false);
+        m_Shader = std::make_unique<Shader>("res/shaders/OGLBookPointShader.shader");
+        m_LightCubeShader = std::make_unique<Shader>("res/shaders/OGLBookLightCube.shader");
+        m_Texture1 = std::make_unique<Texture>("res/textures/container2.png", false);
+        m_Texture2 = std::make_unique<Texture>("res/textures/container2_specular.png", false);
         m_Texture1->Bind(0);
         m_Texture2->Bind(1);
         m_Shader->Bind();

@@ -97,40 +97,40 @@ namespace test
             -1.0f, -1.0f, 1.0f,
             1.0f, -1.0f, 1.0f};
 
-        m_SkyboxTextureDictionary["Skyscape"] = Texture::LoadCubemap({"../res/textures/skybox1/right.jpg",
-                                                                      "../res/textures/skybox1/left.jpg",
-                                                                      "../res/textures/skybox1/top.jpg",
-                                                                      "../res/textures/skybox1/bottom.jpg",
-                                                                      "../res/textures/skybox1/front.jpg",
-                                                                      "../res/textures/skybox1/back.jpg"});
+        m_SkyboxTextureDictionary["Skyscape"] = Texture::LoadCubemap({"res/textures/skybox1/right.jpg",
+                                                                      "res/textures/skybox1/left.jpg",
+                                                                      "res/textures/skybox1/top.jpg",
+                                                                      "res/textures/skybox1/bottom.jpg",
+                                                                      "res/textures/skybox1/front.jpg",
+                                                                      "res/textures/skybox1/back.jpg"});
 
-        m_SkyboxTextureDictionary["Cityscape"] = Texture::LoadCubemap({"../res/textures/skybox2/right.jpg",
-                                                                       "../res/textures/skybox2/left.jpg",
-                                                                       "../res/textures/skybox2/top.jpg",
-                                                                       "../res/textures/skybox2/bottom.jpg",
-                                                                       "../res/textures/skybox2/front.jpg",
-                                                                       "../res/textures/skybox2/back.jpg"});
+        m_SkyboxTextureDictionary["Cityscape"] = Texture::LoadCubemap({"res/textures/skybox2/right.jpg",
+                                                                       "res/textures/skybox2/left.jpg",
+                                                                       "res/textures/skybox2/top.jpg",
+                                                                       "res/textures/skybox2/bottom.jpg",
+                                                                       "res/textures/skybox2/front.jpg",
+                                                                       "res/textures/skybox2/back.jpg"});
 
-        m_SkyboxTextureDictionary["Space"] = Texture::LoadCubemap({"../res/textures/skybox3/right.png",
-                                                                   "../res/textures/skybox3/left.png",
-                                                                   "../res/textures/skybox3/top.png",
-                                                                   "../res/textures/skybox3/bottom.png",
-                                                                   "../res/textures/skybox3/front.png",
-                                                                   "../res/textures/skybox3/back.png"});
+        m_SkyboxTextureDictionary["Space"] = Texture::LoadCubemap({"res/textures/skybox3/right.png",
+                                                                   "res/textures/skybox3/left.png",
+                                                                   "res/textures/skybox3/top.png",
+                                                                   "res/textures/skybox3/bottom.png",
+                                                                   "res/textures/skybox3/front.png",
+                                                                   "res/textures/skybox3/back.png"});
 
         m_CubemapTexture = m_SkyboxTextureDictionary["Skyscape"];
 
-        m_CubeShader = std::make_unique<Shader>("../res/shaders/OGLBookDepthTesting.shader");
+        m_CubeShader = std::make_unique<Shader>("res/shaders/OGLBookDepthTesting.shader");
         m_CubeVAO = std::make_unique<VertexArray>();
         m_CubeVBO = std::make_unique<VertexBuffer>(cubeVertices, 36 * 5 * sizeof(float));
         VertexBufferLayout cubeLayout;
         cubeLayout.Push<float>(3);
         cubeLayout.Push<float>(2);
         m_CubeVAO->AddBuffer(*m_CubeVBO, cubeLayout);
-        m_CubeTexture = std::make_unique<Texture>("../res/textures/container.jpg");
+        m_CubeTexture = std::make_unique<Texture>("res/textures/container.jpg");
         m_CubeTexture->Bind(0);
 
-        m_SkyboxShader = std::make_unique<Shader>("../res/shaders/OGLBookSkyBox.shader");
+        m_SkyboxShader = std::make_unique<Shader>("res/shaders/OGLBookSkyBox.shader");
         m_SkyBoxVAO = std::make_unique<VertexArray>();
         m_SkyBoxVBO = std::make_unique<VertexBuffer>(skyboxVertices, 36 * 3 * sizeof(float));
         VertexBufferLayout skyboxLayout;

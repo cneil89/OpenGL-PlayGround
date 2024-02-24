@@ -39,7 +39,7 @@ namespace test
 
         m_IndexBuffer = std::make_unique<IndexBuffer>(indicies, 3);
 
-        m_Shader = std::make_unique<Shader>("../res/shaders/FlatColor.Shader");
+        m_Shader = std::make_unique<Shader>("res/shaders/FlatColor.Shader");
         m_Shader->Bind();
     }
 

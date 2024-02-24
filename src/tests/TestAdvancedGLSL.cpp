@@ -55,10 +55,10 @@ namespace test
             -0.5f,  0.5f, -0.5f,
         };
 
-        m_ShaderRed = std::make_unique<Shader>("../res/shaders/AdvancedGLSL-Red.shader");
-        m_ShaderGreen = std::make_unique<Shader>("../res/shaders/AdvancedGLSL-Green.shader");
-        m_ShaderBlue = std::make_unique<Shader>("../res/shaders/AdvancedGLSL-Blue.shader");
-        m_ShaderYellow = std::make_unique<Shader>("../res/shaders/AdvancedGLSL-Yellow.shader");
+        m_ShaderRed = std::make_unique<Shader>("res/shaders/AdvancedGLSL-Red.shader");
+        m_ShaderGreen = std::make_unique<Shader>("res/shaders/AdvancedGLSL-Green.shader");
+        m_ShaderBlue = std::make_unique<Shader>("res/shaders/AdvancedGLSL-Blue.shader");
+        m_ShaderYellow = std::make_unique<Shader>("res/shaders/AdvancedGLSL-Yellow.shader");
         m_CubeVAO = std::make_unique<VertexArray>();
         m_CubeVBO = std::make_unique<VertexBuffer>(cubeVertices, 36 * 3 * sizeof(float));
         VertexBufferLayout cubeLayout;
